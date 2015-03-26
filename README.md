@@ -1,8 +1,8 @@
 # HYS3
 Proyecto para la asignatura DAA desarrollado por el Grupo 3
-\r\nIntegrantes:
-\r\nPedro Ríos Fernández
-\r\nManuel Ramos García
-\r\nAdrián Novoa Sousa
-\r\nAlejandro López López
-\r\nPablo Alonso Barreira
+\nIntegrantes:
+\nPedro Ríos Fernández
+\nManuel Ramos García
+\nAdrián Novoa Sousa
+\nAlejandro López López
+\nPablo Alonso Barreira
