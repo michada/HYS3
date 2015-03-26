@@ -1,4 +1,4 @@
-CREATE DATABASE `daaexample`;
+CREATE DATABASE `NombreDatabase`;
 
 CREATE TABLE `daaexample`.`people` (
 	`id` int NOT NULL AUTO_INCREMENT,
