@@ -2,10 +2,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>es.uvigo.esei.daa</groupId>
-	<artifactId>example</artifactId>
+	<artifactId>HaveYouSeen</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>DAA Example</name>
+	<name>DAA Proyect</name>
 
 	<licenses>
 		<license>
@@ -114,7 +114,7 @@
 	</reporting>
 
 	<build>
-		<finalName>DAAExample</finalName>
+		<finalName>DAAProyect</finalName>
 		<plugins>
 			<!-- Build war -->
 			<plugin>
@@ -122,7 +122,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<version>2.6</version>
 				<configuration>
-					<warName>DAAExample</warName>
+					<warName>DAAProyect</warName>
 				</configuration>
 			</plugin>
 			
@@ -186,7 +186,7 @@
 				<version>2.2</version>
 				<configuration>
 					<port>9080</port>
-					<path>/DAAExample</path>
+					<path>/DAAProyect</path>
 					<contextFile>src/test/webapp/META-INF/context.xml</contextFile>
 					<useTestClasspath>false</useTestClasspath>
 				</configuration>
