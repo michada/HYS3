@@ -25,7 +25,7 @@ import org.junit.Test;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
 import es.uvigo.esei.daa.TestUtils;
-import es.uvigo.esei.daa.entities.Person;
+import es.uvigo.esei.daa.entities.Usuario;
 
 public class PeopleTest extends JerseyTest {
 	@BeforeClass
@@ -66,7 +66,7 @@ public class PeopleTest extends JerseyTest {
 		final Response response = target("people").request().get();
 		assertOkStatus(response);
 
-		final List<Person> people = response.readEntity(new GenericType<List<Person>>(){});
+		final List<Usuario> people = response.readEntity(new GenericType<List<Usuario>>(){});
 		assertEquals(10, people.size());
 	}
 
@@ -75,7 +75,7 @@ public class PeopleTest extends JerseyTest {
 		final Response response = target("people/4").request().get();
 		assertOkStatus(response);
 		
-		final Person person = response.readEntity(Person.class);
+		final Usuario person = response.readEntity(Usuario.class);
 		assertEquals(4, person.getId());
 		assertEquals("María", person.getName());
 		assertEquals("Márquez", person.getSurname());
@@ -97,7 +97,7 @@ public class PeopleTest extends JerseyTest {
 			.post(Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE));
 		assertOkStatus(response);
 		
-		final Person person = response.readEntity(Person.class);
+		final Usuario person = response.readEntity(Usuario.class);
 		assertEquals(11, person.getId());
 		assertEquals("Xoel", person.getName());
 		assertEquals("Ximénez", person.getSurname());
@@ -138,7 +138,7 @@ public class PeopleTest extends JerseyTest {
 			.put(Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE));
 		assertOkStatus(response);
 		
-		final Person person = response.readEntity(Person.class);
+		final Usuario person = response.readEntity(Usuario.class);
 		assertEquals(4, person.getId());
 		assertEquals("Marta", person.getName());
 		assertEquals("Méndez", person.getSurname());

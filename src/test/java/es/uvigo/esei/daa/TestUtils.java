@@ -17,12 +17,14 @@ import org.springframework.mock.jndi.SimpleNamingContextBuilder;
 public final class TestUtils {
 	private TestUtils() {}
 
+	//Arreglar
 	public static void createFakeContext() throws NamingException {
 		final SimpleNamingContextBuilder builder = new SimpleNamingContextBuilder();
 		builder.bind("java:/comp/env/jdbc/daaexample", createTestingDataSource());
 		builder.activate();
 	}
-
+	
+	//Arrelgar
 	private static BasicDataSource createTestingDataSource() {
 		final BasicDataSource ds = new BasicDataSource();
 		ds.setDriverClassName("com.mysql.jdbc.Driver");
@@ -37,8 +39,9 @@ public final class TestUtils {
 	
 	public static void clearTestDatabase() throws SQLException {
 		final String queries = new StringBuilder()
-			.append("DELETE FROM `people`;")
-			.append("DELETE FROM `users`;")
+			.append("DELETE FROM `Usuarios`;")
+			.append("DELETE FROM `Eventos`;")
+			.append("DELETE FROM `Asistentes`;")
 		.toString();
 
 		final DataSource ds = createTestingDataSource();
@@ -51,19 +54,21 @@ public final class TestUtils {
 	
 	public static void initTestDatabase() throws SQLException {
 		final String queries = new StringBuilder()
-			.append("ALTER TABLE `people` AUTO_INCREMENT = 1;")
-			.append("ALTER TABLE `users` AUTO_INCREMENT = 1;")
-			.append("INSERT INTO `people` (`id`,`name`,`surname`) VALUES (0, 'Antón', 'Álvarez');")
-			.append("INSERT INTO `people` (`id`,`name`,`surname`) VALUES (0, 'Ana', 'Amargo');")
-			.append("INSERT INTO `people` (`id`,`name`,`surname`) VALUES (0, 'Manuel', 'Martínez');")
-			.append("INSERT INTO `people` (`id`,`name`,`surname`) VALUES (0, 'María', 'Márquez');")
-			.append("INSERT INTO `people` (`id`,`name`,`surname`) VALUES (0, 'Lorenzo', 'López');")
-			.append("INSERT INTO `people` (`id`,`name`,`surname`) VALUES (0, 'Laura', 'Laredo');")
-			.append("INSERT INTO `people` (`id`,`name`,`surname`) VALUES (0, 'Perico', 'Palotes');")
-			.append("INSERT INTO `people` (`id`,`name`,`surname`) VALUES (0, 'Patricia', 'Pérez');")
-			.append("INSERT INTO `people` (`id`,`name`,`surname`) VALUES (0, 'Juan', 'Jiménez');")
-			.append("INSERT INTO `people` (`id`,`name`,`surname`) VALUES (0, 'Julia', 'Justa');")
-			.append("INSERT INTO `users` (`login`,`password`) VALUES ('mrjato', '59189332a4abf8ddf66fde068cad09eb563b4bd974f7663d97ff6852a7910a73');")
+			.append("ALTER TABLE `Eventos` AUTO_INCREMENT = 1;")
+			.append("ALTER TABLE `Usuarios` AUTO_INCREMENT = 1;")
+			.append("ALTER TABLE `Asistentes` AUTO_INCREMENT = 1;")
+			.append("INSERT INTO `Eventos` (`idEvento`,`titulo`,`usuario`,`fechaInicio`,`fechaFinal`) VALUES (0, 'Evento numero 1', 'UsuarioPrueba1', '03/05/2015', '09/05/2015');")
+			.append("INSERT INTO `Eventos` (`idEvento`,`titulo`,`usuario`,`fechaInicio`,`fechaFinal`) VALUES (0, 'Evento numero 2', 'UsuarioPrueba2', '03/05/2015', '09/05/2015');")
+			.append("INSERT INTO `Eventos` (`idEvento`,`titulo`,`usuario`,`fechaInicio`,`fechaFinal`) VALUES (0, 'Evento numero 3', 'UsuarioPrueba3', '03/05/2015', '09/05/2015');")
+			.append("INSERT INTO `Usuarios` (`idUsuario`,`login`,`password`) VALUES ('0', 'UsuarioPrueba1',`prueba1`);")
+			.append("INSERT INTO `Usuarios` (`idUsuario`,`login`,`password`) VALUES ('0', 'UsuarioPrueba2',`prueba2`);")
+			.append("INSERT INTO `Usuarios` (`idUsuario`,`login`,`password`) VALUES ('0', 'UsuarioPrueba3',`prueba3`);")
+			.append("INSERT INTO `Asistentes` (`idAsistente`,`usuario`,`evento`) VALUES ('0', 'UsuarioPrueba1',`Evento numero 1`);")
+			.append("INSERT INTO `Asistentes` (`idAsistente`,`usuario`,`evento`) VALUES ('0', 'UsuarioPrueba2',`Evento numero 1`);")
+			.append("INSERT INTO `Asistentes` (`idAsistente`,`usuario`,`evento`) VALUES ('0', 'UsuarioPrueba3',`Evento numero 1`);")
+			.append("INSERT INTO `Asistentes` (`idAsistente`,`usuario`,`evento`) VALUES ('0', 'UsuarioPrueba1',`Evento numero 2`);")
+			.append("INSERT INTO `Asistentes` (`idAsistente`,`usuario`,`evento`) VALUES ('0', 'UsuarioPrueba2',`Evento numero 2`);")
+			.append("INSERT INTO `Asistentes` (`idAsistente`,`usuario`,`evento`) VALUES ('0', 'UsuarioPrueba3',`Evento numero 3`);")
 		.toString();
 
 		final DataSource ds = createTestingDataSource();

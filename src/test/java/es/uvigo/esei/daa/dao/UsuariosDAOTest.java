@@ -8,10 +8,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import es.uvigo.esei.daa.TestUtils;
-import es.uvigo.esei.daa.entities.Person;
+import es.uvigo.esei.daa.entities.Usuario;
 
-public class PeopleDAOTest {
-	private PeopleDAO dao;
+public class UsuariosDAOTest {
+	private UsuariosDAO dao;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -22,7 +22,7 @@ public class PeopleDAOTest {
 	@Before
 	public void setUp() throws Exception {
 		TestUtils.initTestDatabase();
-		this.dao = new PeopleDAO();
+		this.dao = new UsuariosDAO();
 	}
 
 	@After
@@ -33,11 +33,11 @@ public class PeopleDAOTest {
 
 	@Test
 	public void testGet() throws DAOException {
-		final Person person = this.dao.get(4);
+		final Usuario user = this.dao.get(2);
 		
-		assertEquals(4, person.getId());
-		assertEquals("María", person.getName());
-		assertEquals("Márquez", person.getSurname());
+		assertEquals(2, user.getId());
+		assertEquals("UsuarioPrueba2", user.getLogin());
+		assertEquals("prueba2", user.getPassword());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -47,12 +47,12 @@ public class PeopleDAOTest {
 
 	@Test
 	public void testList() throws DAOException {
-		assertEquals(10, this.dao.list().size());
+		assertEquals(3, this.dao.list().size());
 	}
 
 	@Test
 	public void testDelete() throws DAOException {
-		this.dao.delete(4);
+		this.dao.delete(2);
 		
 		assertEquals(9, this.dao.list().size());
 	}
@@ -64,51 +64,51 @@ public class PeopleDAOTest {
 
 	@Test
 	public void testModify() throws DAOException {
-		this.dao.modify(5, "John", "Doe");
+		this.dao.modify(1, "LoginM", "PassM");
 		
-		final Person person = this.dao.get(5);
+		final Usuario user = this.dao.get(1);
 		
-		assertEquals(5, person.getId());
-		assertEquals("John", person.getName());
-		assertEquals("Doe", person.getSurname());
+		assertEquals(1, user.getId());
+		assertEquals("LoginM", user.getLogin());
+		assertEquals("PassM", user.getPassword());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testModifyInvalidId() throws DAOException {
-		this.dao.modify(100, "John", "Doe");
+		this.dao.modify(100, "LoginM", "PassM");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testModifyNullName() throws DAOException {
-		this.dao.modify(5, null, "Doe");
+		this.dao.modify(1, null, "PassM");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testModifyNullSurname() throws DAOException {
-		this.dao.modify(5, "John", null);
+		this.dao.modify(1, "LoginM", null);
 	}
 
 	@Test
 	public void testAdd() throws DAOException {
-		final Person person = this.dao.add("John", "Doe");
+		final Usuario user = this.dao.add("LoginA", "PassA");
 		
-		assertEquals("John", person.getName());
-		assertEquals("Doe", person.getSurname());
+		assertEquals("LoginA", user.getLogin());
+		assertEquals("PassA", user.getPassword());
 		
-		final Person personGet = this.dao.get(person.getId());
+		final Usuario userGet = this.dao.get(user.getId());
 
-		assertEquals(person.getId(), personGet.getId());
-		assertEquals("John", personGet.getName());
-		assertEquals("Doe", personGet.getSurname());
+		assertEquals(user.getId(), userGet.getId());
+		assertEquals("LoginA", userGet.getLogin());
+		assertEquals("PassA", userGet.getPassword());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testAddNullName() throws DAOException {
-		this.dao.add(null, "Doe");
+		this.dao.add(null, "PassA");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testAddNullSurname() throws DAOException {
-		this.dao.add("John", null);
+		this.dao.add("LoginA", null);
 	}
 }

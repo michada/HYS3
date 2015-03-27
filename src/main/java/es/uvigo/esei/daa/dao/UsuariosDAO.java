@@ -10,12 +10,13 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import es.uvigo.esei.daa.entities.Person;
+import es.uvigo.esei.daa.entities.Usuario;
 
-public class PeopleDAO extends DAO {
+//Clase PeopleDAO de DAA Example a la que se le modifico el nombre para que concordara con los test
+public class UsuariosDAO extends DAO {
 	private final static Logger LOG = Logger.getLogger("PeopleDAO");
 	
-	public Person get(int id)
+	public Usuario get(int id)
 	throws DAOException, IllegalArgumentException {
 		try (final Connection conn = this.getConnection()) {
 			final String query = "SELECT * FROM people WHERE id=?";
@@ -25,7 +26,7 @@ public class PeopleDAO extends DAO {
 				
 				try (ResultSet result = statement.executeQuery()) {
 					if (result.next()) {
-						return new Person(
+						return new Usuario(
 							result.getInt("id"),
 							result.getString("name"),
 							result.getString("surname")
@@ -41,14 +42,14 @@ public class PeopleDAO extends DAO {
 		}
 	}
 	
-	public List<Person> list() throws DAOException {
+	public List<Usuario> list() throws DAOException {
 		try (final Connection conn = this.getConnection()) {
 			try (Statement statement = conn.createStatement()) {
 				try (ResultSet result = statement.executeQuery("SELECT * FROM people")) {
-					final List<Person> people = new LinkedList<>();
+					final List<Usuario> people = new LinkedList<>();
 					
 					while (result.next()) {
-						people.add(new Person(
+						people.add(new Usuario(
 							result.getInt("id"),
 							result.getString("name"),
 							result.getString("surname")
@@ -82,7 +83,7 @@ public class PeopleDAO extends DAO {
 		}
 	}
 	
-	public Person modify(int id, String name, String surname)
+	public Usuario modify(int id, String name, String surname)
 	throws DAOException, IllegalArgumentException {
 		if (name == null || surname == null) {
 			throw new IllegalArgumentException("name and surname can't be null");
@@ -97,7 +98,7 @@ public class PeopleDAO extends DAO {
 				statement.setInt(3, id);
 				
 				if (statement.executeUpdate() == 1) {
-					return new Person(id, name, surname); 
+					return new Usuario(id, name, surname); 
 				} else {
 					throw new IllegalArgumentException("name and surname can't be null");
 				}
@@ -108,7 +109,7 @@ public class PeopleDAO extends DAO {
 		}
 	}
 	
-	public Person add(String name, String surname)
+	public Usuario add(String name, String surname)
 	throws DAOException, IllegalArgumentException {
 		if (name == null || surname == null) {
 			throw new IllegalArgumentException("name and surname can't be null");
@@ -124,7 +125,7 @@ public class PeopleDAO extends DAO {
 				if (statement.executeUpdate() == 1) {
 					try (ResultSet resultKeys = statement.getGeneratedKeys()) {
 						if (resultKeys.next()) {
-							return new Person(resultKeys.getInt(1), name, surname);
+							return new Usuario(resultKeys.getInt(1), name, surname);
 						} else {
 							LOG.log(Level.SEVERE, "Error retrieving inserted id");
 							throw new SQLException("Error retrieving inserted id");
