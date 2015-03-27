@@ -54,7 +54,7 @@ public class UsuariosDAOTest {
 	public void testDelete() throws DAOException {
 		this.dao.delete(2);
 		
-		assertEquals(9, this.dao.list().size());
+		assertEquals(2, this.dao.list().size());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -79,12 +79,12 @@ public class UsuariosDAOTest {
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void testModifyNullName() throws DAOException {
+	public void testModifyNullLogin() throws DAOException {
 		this.dao.modify(1, null, "PassM");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void testModifyNullSurname() throws DAOException {
+	public void testModifyNullPassword() throws DAOException {
 		this.dao.modify(1, "LoginM", null);
 	}
 
@@ -103,12 +103,12 @@ public class UsuariosDAOTest {
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void testAddNullName() throws DAOException {
+	public void testAddNullLogin() throws DAOException {
 		this.dao.add(null, "PassA");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void testAddNullSurname() throws DAOException {
+	public void testAddNullPassword() throws DAOException {
 		this.dao.add("LoginA", null);
 	}
 }
