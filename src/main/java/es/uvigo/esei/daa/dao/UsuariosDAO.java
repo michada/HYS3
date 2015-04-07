@@ -19,7 +19,7 @@ public class UsuariosDAO extends DAO {
 	public Usuario get(int id)
 	throws DAOException, IllegalArgumentException {
 		try (final Connection conn = this.getConnection()) {
-			final String query = "SELECT * FROM people WHERE id=?";
+			final String query = "SELECT * FROM Usuarios WHERE idUsuario=?";
 			
 			try (PreparedStatement statement = conn.prepareStatement(query)) {
 				statement.setInt(1, id);
@@ -27,12 +27,13 @@ public class UsuariosDAO extends DAO {
 				try (ResultSet result = statement.executeQuery()) {
 					if (result.next()) {
 						return new Usuario(
-							result.getInt("id"),
-							result.getString("name"),
-							result.getString("surname")
+							result.getInt("idUsuario"),
+							result.getString("login"),
+							result.getString("password"),
+							result.getString("nombre")
 						);
 					} else {
-						throw new IllegalArgumentException("Invalid id");
+						throw new IllegalArgumentException("Invalid idUsuario");
 					}
 				}
 			}
@@ -45,22 +46,23 @@ public class UsuariosDAO extends DAO {
 	public List<Usuario> list() throws DAOException {
 		try (final Connection conn = this.getConnection()) {
 			try (Statement statement = conn.createStatement()) {
-				try (ResultSet result = statement.executeQuery("SELECT * FROM people")) {
-					final List<Usuario> people = new LinkedList<>();
+				try (ResultSet result = statement.executeQuery("SELECT * FROM Usuarios")) {
+					final List<Usuario> users = new LinkedList<>();
 					
 					while (result.next()) {
-						people.add(new Usuario(
-							result.getInt("id"),
-							result.getString("name"),
-							result.getString("surname")
+						users.add(new Usuario(
+								result.getInt("idUsuario"),
+								result.getString("login"),
+								result.getString("password"),
+								result.getString("nombre")
 						));
 					}
 					
-					return people;
+					return users;
 				}
 			}
 		} catch (SQLException e) {
-			LOG.log(Level.SEVERE, "Error listing people", e);
+			LOG.log(Level.SEVERE, "Error listing users", e);
 			throw new DAOException(e);
 		}
 	}
@@ -68,7 +70,7 @@ public class UsuariosDAO extends DAO {
 	public void delete(int id)
 	throws DAOException, IllegalArgumentException {
 		try (final Connection conn = this.getConnection()) {
-			final String query = "DELETE FROM people WHERE id=?";
+			final String query = "DELETE FROM Usuarios WHERE idUsuario=?";
 			
 			try (PreparedStatement statement = conn.prepareStatement(query)) {
 				statement.setInt(1, id);
@@ -78,54 +80,56 @@ public class UsuariosDAO extends DAO {
 				}
 			}
 		} catch (SQLException e) {
-			LOG.log(Level.SEVERE, "Error deleting a person", e);
+			LOG.log(Level.SEVERE, "Error deleting a user", e);
 			throw new DAOException(e);
 		}
 	}
 	
-	public Usuario modify(int id, String name, String surname)
+	public Usuario modify(int idUsuario, String login, String password, String nombre)
 	throws DAOException, IllegalArgumentException {
-		if (name == null || surname == null) {
-			throw new IllegalArgumentException("name and surname can't be null");
+		if (login == null || password == null || nombre == null) {
+			throw new IllegalArgumentException("login, password or nombre can't be null");
 		}
 		
 		try (final Connection conn = this.getConnection()) {
-			final String query = "UPDATE people SET name=?, surname=? WHERE id=?";
+			final String query = "UPDATE Usuarios SET login=?, password=?, nombre=? WHERE idUsuario=?";
 			
 			try (PreparedStatement statement = conn.prepareStatement(query)) {
-				statement.setString(1, name);
-				statement.setString(2, surname);
-				statement.setInt(3, id);
+				statement.setString(1, login);
+				statement.setString(2, password);
+				statement.setString(3, nombre);
+				statement.setInt(4, idUsuario);
 				
 				if (statement.executeUpdate() == 1) {
-					return new Usuario(id, name, surname); 
+					return new Usuario(idUsuario, login, password, nombre); 
 				} else {
-					throw new IllegalArgumentException("name and surname can't be null");
+					throw new IllegalArgumentException("login, password or nombre can't be null");
 				}
 			}
 		} catch (SQLException e) {
-			LOG.log(Level.SEVERE, "Error modifying a person", e);
+			LOG.log(Level.SEVERE, "Error modifying a user", e);
 			throw new DAOException();
 		}
 	}
 	
-	public Usuario add(String name, String surname)
+	public Usuario add(String login, String password, String nombre)
 	throws DAOException, IllegalArgumentException {
-		if (name == null || surname == null) {
-			throw new IllegalArgumentException("name and surname can't be null");
+		if (login == null || password == null || nombre == null) {
+			throw new IllegalArgumentException("login, password or nombre can't be null");
 		}
 		
 		try (final Connection conn = this.getConnection()) {
-			final String query = "INSERT INTO people VALUES(null, ?, ?)";
+			final String query = "INSERT INTO Usuarios VALUES(null, ?, ?, ?)";
 			
 			try (PreparedStatement statement = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
-				statement.setString(1, name);
-				statement.setString(2, surname);
+				statement.setString(1, login);
+				statement.setString(2, password);
+				statement.setString(3, nombre);
 				
 				if (statement.executeUpdate() == 1) {
 					try (ResultSet resultKeys = statement.getGeneratedKeys()) {
 						if (resultKeys.next()) {
-							return new Usuario(resultKeys.getInt(1), name, surname);
+							return new Usuario(resultKeys.getInt(1), login, password, nombre);
 						} else {
 							LOG.log(Level.SEVERE, "Error retrieving inserted id");
 							throw new SQLException("Error retrieving inserted id");
@@ -137,7 +141,7 @@ public class UsuariosDAO extends DAO {
 				}
 			}
 		} catch (SQLException e) {
-			LOG.log(Level.SEVERE, "Error adding a person", e);
+			LOG.log(Level.SEVERE, "Error adding a user", e);
 			throw new DAOException(e);
 		}
 	}
