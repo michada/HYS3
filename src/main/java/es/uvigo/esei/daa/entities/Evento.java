@@ -6,21 +6,21 @@ public class Evento {
 	private String titulo;
 	private String usuario;
 	private int maxAsistentes;
-	private String fechaInicio;
-	private String fechaFin;
+	private String inicio;
+	private String fin;
 	
 	public Evento(){
 		
 	}
 	
-	public Evento(int idEvento,String titulo, String usuario, int maxAsistentes, String fechaInicio, String fechaFin){
+	public Evento(int idEvento,String titulo, String usuario, int maxAsistentes, String inicio, String fin){
 		
 		this.idEvento = idEvento;
 		this.titulo = titulo;
 		this.usuario = usuario;
 		this.maxAsistentes = maxAsistentes;
-		this.fechaInicio = fechaInicio;
-		this.fechaFin = fechaFin;
+		this.inicio = inicio;
+		this.fin = fin;
 		
 	}
 
@@ -48,17 +48,17 @@ public class Evento {
 	public void setMaxAsistentes(int maxAsistentes) {
 		this.maxAsistentes = maxAsistentes;
 	}
-	public String getFechaInicio() {
-		return fechaInicio;
+	public String getinicio() {
+		return inicio;
 	}
-	public void setFechaInicio(String fechaInicio) {
-		this.fechaInicio = fechaInicio;
+	public void setinicio(String inicio) {
+		this.inicio = inicio;
 	}
-	public String getFechaFin() {
-		return fechaFin;
+	public String getfin() {
+		return fin;
 	}
-	public void setFechaFin(String fechaFin) {
-		this.fechaFin = fechaFin;
+	public void setfin(String fin) {
+		this.fin = fin;
 	}
 	
 	
