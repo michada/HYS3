@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `Asistentes` (
 
 DROP TABLE IF EXISTS `Eventos`;
 CREATE TABLE IF NOT EXISTS `Eventos` (
-  `idEvento` int(100) NOT NULL,
+  `idEvento` int NOT NULL AUTO_INCREMENT,
   `titulo` varchar(100) COLLATE latin1_spanish_ci NOT NULL,
   `usuario` int(100) NOT NULL,
   `maxAsistentes` int(100) NOT NULL,
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `Eventos` (
 
 DROP TABLE IF EXISTS `Usuarios`;
 CREATE TABLE IF NOT EXISTS `Usuarios` (
-  `idUsuario` int(100) NOT NULL,
+  `idUsuario` int NOT NULL AUTO_INCREMENT,
   `login` varchar(100) COLLATE latin1_spanish_ci NOT NULL,
   `password` varbinary(100) DEFAULT NULL,
   `nombre` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
