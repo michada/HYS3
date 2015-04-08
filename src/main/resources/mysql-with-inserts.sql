@@ -4,6 +4,12 @@
 
 GRANT USAGE ON *.* TO 'Admin'@'localhost' IDENTIFIED BY PASSWORD '*4ACFE3202A5FF5CF467898FC58AAB1D615029441';
 
+--
+-- Usuario con los privilegios necesarios para la DB
+--
+
+GRANT USAGE ON *.* TO 'Admin'@'localhost' IDENTIFIED BY PASSWORD '*4ACFE3202A5FF5CF467898FC58AAB1D615029441';
+
 GRANT ALL PRIVILEGES ON `HaveYouSeen\_DB`.* TO 'Admin'@'localhost' WITH GRANT OPTION;
 
 -- --------------------------------------------------------
@@ -73,3 +79,19 @@ ALTER TABLE `Asistentes`
 
 ALTER TABLE `Eventos`
   ADD CONSTRAINT `crea` FOREIGN KEY (`usuario`) REFERENCES `Usuarios` (`idUsuario`);
+
+-- --------------------------------------------------------
+
+--
+-- Volcado de datos para las tablas
+--
+
+INSERT INTO `Usuarios` (`idUsuario`, `login`, `password`, `nombre`) VALUES
+(0, 'admin', 'admin', 'administrador');
+
+INSERT INTO `Eventos` (`idEvento`, `titulo`, `usuario`, `maxAsistentes`, `inicio`, `fin`) VALUES
+(0, 'Primer Evento', 0, 0, '', '');
+
+INSERT INTO `Asistentes` (`usuario`, `evento`) VALUES
+(0, 0);
+
