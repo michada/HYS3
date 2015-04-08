@@ -4,12 +4,6 @@
 
 GRANT USAGE ON *.* TO 'Admin'@'localhost' IDENTIFIED BY PASSWORD '*4ACFE3202A5FF5CF467898FC58AAB1D615029441';
 
---
--- Usuario con los privilegios necesarios para la DB
---
-
-GRANT USAGE ON *.* TO 'Admin'@'localhost' IDENTIFIED BY PASSWORD '*4ACFE3202A5FF5CF467898FC58AAB1D615029441';
-
 GRANT ALL PRIVILEGES ON `HaveYouSeen\_DB`.* TO 'Admin'@'localhost' WITH GRANT OPTION;
 
 -- --------------------------------------------------------

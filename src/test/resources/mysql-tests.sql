@@ -1,28 +1,38 @@
-DROP TABLE IF EXISTS `people`;
-CREATE TABLE `people` (
-	`id` int NOT NULL AUTO_INCREMENT,
-	`name` varchar(50) DEFAULT NULL,
-	`surname` varchar(100) DEFAULT NULL,
-	PRIMARY KEY (`id`)
-);
+DROP TABLE IF EXISTS `Asistentes`;
+CREATE TABLE IF NOT EXISTS `Asistentes` (
+  `usuario` int(100) NOT NULL,
+  `evento` int(100) NOT NULL,
+  KEY `usuario` (`usuario`),
+  KEY `evento` (`evento`),
+  KEY `usuario_2` (`usuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci COMMENT='Contiene una relación entre el evento y sus asistentes';
 
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE `users` (
-	`login` varchar(100) NOT NULL,
-	`password` varbinary(64) DEFAULT NULL,
-	PRIMARY KEY (`login`)
-);
+DROP TABLE IF EXISTS `Eventos`;
+CREATE TABLE IF NOT EXISTS `Eventos` (
+  `idEvento` int NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(100) COLLATE latin1_spanish_ci NOT NULL,
+  `usuario` int(100) NOT NULL,
+  `maxAsistentes` int(100) NOT NULL,
+  `inicio` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
+  `fin` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
+  PRIMARY KEY (`idEvento`),
+  UNIQUE KEY `idEvento` (`idEvento`),
+  KEY `usuario` (`usuario`),
+  KEY `usuario_2` (`usuario`),
+  KEY `usuario_3` (`usuario`),
+  KEY `usuario_4` (`usuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci COMMENT='Tabla que contiene los datos del evento y una relación con el usuario creador';
 
-INSERT INTO `people` (`id`,`name`,`surname`) VALUES (0,'Antón','Álvarez');
-INSERT INTO `people` (`id`,`name`,`surname`) VALUES (0,'Ana','Amargo');
-INSERT INTO `people` (`id`,`name`,`surname`) VALUES (0,'Manuel','Martínez');
-INSERT INTO `people` (`id`,`name`,`surname`) VALUES (0,'María','Márquez');
-INSERT INTO `people` (`id`,`name`,`surname`) VALUES (0,'Lorenzo','López');
-INSERT INTO `people` (`id`,`name`,`surname`) VALUES (0,'Laura','Laredo');
-INSERT INTO `people` (`id`,`name`,`surname`) VALUES (0,'Perico','Palotes');
-INSERT INTO `people` (`id`,`name`,`surname`) VALUES (0,'Patricia','Pérez');
-INSERT INTO `people` (`id`,`name`,`surname`) VALUES (0,'Juan','Jiménez');
-INSERT INTO `people` (`id`,`name`,`surname`) VALUES (0,'Julia','Justa');
+DROP TABLE IF EXISTS `Usuarios`;
+CREATE TABLE IF NOT EXISTS `Usuarios` (
+  `idUsuario` int NOT NULL AUTO_INCREMENT,
+  `login` varchar(100) COLLATE latin1_spanish_ci NOT NULL,
+  `password` varbinary(100) DEFAULT NULL,
+  `nombre` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
+  PRIMARY KEY (`idUsuario`),
+  UNIQUE KEY `idUsuario` (`idUsuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci COMMENT='Tabla que contiene los datos de los usuarios registrados';
 
--- login: mrjato, password: mrjato
-INSERT INTO `users` (`login`,`password`) VALUES ('mrjato', '59189332a4abf8ddf66fde068cad09eb563b4bd974f7663d97ff6852a7910a73');
+INSERT INTO `Usuarios` (`idUsuario`, `login`, `password`, `nombre`) VALUES (0, 'admin', 'admin', 'administrador');
+INSERT INTO `Eventos` (`idEvento`, `titulo`, `usuario`, `maxAsistentes`, `inicio`, `fin`) VALUES (0, 'Primer Evento', 0, 0, '', '');
+INSERT INTO `Asistentes` (`usuario`, `evento`) VALUES (0, 0);
