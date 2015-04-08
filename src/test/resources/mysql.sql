@@ -33,6 +33,12 @@ CREATE TABLE IF NOT EXISTS `Usuarios` (
   UNIQUE KEY `idUsuario` (`idUsuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci COMMENT='Tabla que contiene los datos de los usuarios registrados';
 
+ALTER TABLE `Asistentes`
+  ADD CONSTRAINT `asiste` FOREIGN KEY (`usuario`) REFERENCES `Usuarios` (`idUsuario`),
+  ADD CONSTRAINT `es asistido` FOREIGN KEY (`evento`) REFERENCES `Eventos` (`idEvento`);
+
+ALTER TABLE `Eventos`
+  ADD CONSTRAINT `crea` FOREIGN KEY (`usuario`) REFERENCES `Usuarios` (`idUsuario`);
 
 GRANT USAGE ON *.* TO 'Admin'@'localhost' IDENTIFIED BY PASSWORD '*4ACFE3202A5FF5CF467898FC58AAB1D615029441';
 
