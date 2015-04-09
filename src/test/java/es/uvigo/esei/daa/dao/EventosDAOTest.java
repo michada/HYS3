@@ -165,7 +165,7 @@ public class EventosDAOTest {
 
 	@Test
 	public void testOrdenarEventos() throws DAOException {
-		//this.dao.ordenar();
+		this.dao.ordenar();
 
 		//int max = 10000;	
 

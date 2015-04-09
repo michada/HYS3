@@ -17,7 +17,7 @@ import javax.ws.rs.core.Response;
 import es.uvigo.esei.daa.dao.DAOException;
 import es.uvigo.esei.daa.dao.EventosDAO;
 
-@Path("/people")
+@Path("/eventos")
 @Produces(MediaType.APPLICATION_JSON)
 public class EventosResource {
 	private final static Logger LOG = Logger.getLogger("EventosResource");
