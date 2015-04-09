@@ -4,7 +4,7 @@
 
 GRANT USAGE ON *.* TO 'Admin'@'localhost' IDENTIFIED BY PASSWORD '*4ACFE3202A5FF5CF467898FC58AAB1D615029441';
 
-GRANT ALL PRIVILEGES ON `HaveYouSeen\_DB`.* TO 'Admin'@'localhost' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON `haveyouseen\_db`.* TO 'Admin'@'localhost' WITH GRANT OPTION;
 
 -- --------------------------------------------------------
 
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `HaveYouSeen_DB`
 --
-CREATE DATABASE IF NOT EXISTS `HaveYouSeen_DB` DEFAULT CHARACTER SET latin1 COLLATE latin1_spanish_ci;
+CREATE DATABASE IF NOT EXISTS `haveyouseen_db` DEFAULT CHARACTER SET latin1 COLLATE latin1_spanish_ci;
 USE `HaveYouSeen_DB`;
 
 -- --------------------------------------------------------
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `Asistentes` (
 
 DROP TABLE IF EXISTS `Eventos`;
 CREATE TABLE IF NOT EXISTS `Eventos` (
-  `idEvento` int(100) NOT NULL,
+  `idEvento` int NOT NULL AUTO_INCREMENT,
   `titulo` varchar(100) COLLATE latin1_spanish_ci NOT NULL,
   `usuario` int(100) NOT NULL,
   `maxAsistentes` int(100) NOT NULL,
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `Eventos` (
 
 DROP TABLE IF EXISTS `Usuarios`;
 CREATE TABLE IF NOT EXISTS `Usuarios` (
-  `idUsuario` int(100) NOT NULL,
+  `idUsuario` int NOT NULL AUTO_INCREMENT,
   `login` varchar(100) COLLATE latin1_spanish_ci NOT NULL,
   `password` varbinary(100) DEFAULT NULL,
   `nombre` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
@@ -71,5 +71,3 @@ ALTER TABLE `Asistentes`
   ADD CONSTRAINT `asiste` FOREIGN KEY (`usuario`) REFERENCES `Usuarios` (`idUsuario`),
   ADD CONSTRAINT `es asistido` FOREIGN KEY (`evento`) REFERENCES `Eventos` (`idEvento`);
 
-ALTER TABLE `Eventos`
-  ADD CONSTRAINT `crea` FOREIGN KEY (`usuario`) REFERENCES `Usuarios` (`idUsuario`);

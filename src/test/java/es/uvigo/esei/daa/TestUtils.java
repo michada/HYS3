@@ -20,7 +20,7 @@ public final class TestUtils {
 	//Arreglar
 	public static void createFakeContext() throws NamingException {
 		final SimpleNamingContextBuilder builder = new SimpleNamingContextBuilder();
-		builder.bind("java:/comp/env/jdbc/daaexample", createTestingDataSource());
+		builder.bind("java:/comp/env/jdbc/haveyouseen_db", createTestingDataSource());
 		builder.activate();
 	}
 	
@@ -28,9 +28,9 @@ public final class TestUtils {
 	private static BasicDataSource createTestingDataSource() {
 		final BasicDataSource ds = new BasicDataSource();
 		ds.setDriverClassName("com.mysql.jdbc.Driver");
-		ds.setUrl("jdbc:mysql://localhost:3306/daaexampletest?allowMultiQueries=true");
-		ds.setUsername("daa");
-		ds.setPassword("daa");
+		ds.setUrl("jdbc:mysql://localhost:3306/haveyouseen_db?allowMultiQueries=true");
+		ds.setUsername("Admin");
+		ds.setPassword("admin");
 		ds.setMaxActive(100);
 		ds.setMaxIdle(30);
 		ds.setMaxWait(10000);
@@ -39,9 +39,9 @@ public final class TestUtils {
 	
 	public static void clearTestDatabase() throws SQLException {
 		final String queries = new StringBuilder()
-			.append("DELETE FROM `Usuarios`;")
-			.append("DELETE FROM `Eventos`;")
-			.append("DELETE FROM `Asistentes`;")
+			.append("DELETE FROM `eventos`;")
+			.append("DELETE FROM `usuarios`;")
+			//.append("DELETE FROM `asistentes`;")
 		.toString();
 
 		final DataSource ds = createTestingDataSource();
@@ -54,21 +54,20 @@ public final class TestUtils {
 	
 	public static void initTestDatabase() throws SQLException {
 		final String queries = new StringBuilder()
-			.append("ALTER TABLE `Eventos` AUTO_INCREMENT = 1;")
 			.append("ALTER TABLE `Usuarios` AUTO_INCREMENT = 1;")
-			.append("ALTER TABLE `Asistentes` AUTO_INCREMENT = 1;")
-			.append("INSERT INTO `Eventos` (`idEvento`,`titulo`,`usuario`,`inicio`,`final`) VALUES (0, 'Evento numero 1', 'UsuarioPrueba1', '3', '03/05/2015', '09/05/2015');")
-			.append("INSERT INTO `Eventos` (`idEvento`,`titulo`,`usuario`,`inicio`,`final`) VALUES (0, 'Evento numero 2', 'UsuarioPrueba2', '2', '03/05/2015', '09/05/2015');")
-			.append("INSERT INTO `Eventos` (`idEvento`,`titulo`,`usuario`,`inicio`,`final`) VALUES (0, 'Evento numero 3', 'UsuarioPrueba3', '1', '03/05/2015', '09/05/2015');")
-			.append("INSERT INTO `Usuarios` (`idUsuario`,`login`,`password`,`nombre`) VALUES ('0', 'UsuarioPrueba1',`prueba1`, 'Pepe');")
-			.append("INSERT INTO `Usuarios` (`idUsuario`,`login`,`password`,`nombre`) VALUES ('0', 'UsuarioPrueba2',`prueba2`, 'Maria');")
-			.append("INSERT INTO `Usuarios` (`idUsuario`,`login`,`password`,`nombre`) VALUES ('0', 'UsuarioPrueba3',`prueba3`, 'Jose');")
-			.append("INSERT INTO `Asistentes` (`idAsistente`,`usuario`,`evento`) VALUES ('0', 'UsuarioPrueba1',`Evento numero 1`);")
-			.append("INSERT INTO `Asistentes` (`idAsistente`,`usuario`,`evento`) VALUES ('0', 'UsuarioPrueba2',`Evento numero 1`);")
-			.append("INSERT INTO `Asistentes` (`idAsistente`,`usuario`,`evento`) VALUES ('0', 'UsuarioPrueba3',`Evento numero 1`);")
-			.append("INSERT INTO `Asistentes` (`idAsistente`,`usuario`,`evento`) VALUES ('0', 'UsuarioPrueba1',`Evento numero 2`);")
-			.append("INSERT INTO `Asistentes` (`idAsistente`,`usuario`,`evento`) VALUES ('0', 'UsuarioPrueba2',`Evento numero 2`);")
-			.append("INSERT INTO `Asistentes` (`idAsistente`,`usuario`,`evento`) VALUES ('0', 'UsuarioPrueba3',`Evento numero 3`);")
+			.append("ALTER TABLE `Eventos` AUTO_INCREMENT = 1;")
+			.append("INSERT INTO `usuarios` (`idUsuario`,`login`,`password`,`nombre`) VALUES ('0', 'UsuarioPrueba1','prueba1', 'Pepe');")
+			.append("INSERT INTO `usuarios` (`idUsuario`,`login`,`password`,`nombre`) VALUES ('0', 'UsuarioPrueba2','prueba2', 'Maria');")
+			.append("INSERT INTO `usuarios` (`idUsuario`,`login`,`password`,`nombre`) VALUES ('0', 'UsuarioPrueba3','prueba3', 'Jose');")
+			.append("INSERT INTO `eventos` (`idEvento`,`titulo`,`usuario`,`maxAsistentes`,`inicio`,`fin`) VALUES (0, 'Evento numero 1', 0, '3', '03/05/2015', '09/05/2015');")
+			.append("INSERT INTO `eventos` (`idEvento`,`titulo`,`usuario`,`maxAsistentes`,`inicio`,`fin`) VALUES (0, 'Evento numero 2', 1, '2', '03/05/2015', '09/05/2015');")
+			.append("INSERT INTO `eventos` (`idEvento`,`titulo`,`usuario`,`maxAsistentes`,`inicio`,`fin`) VALUES (0, 'Evento numero 3', 2, '1', '03/05/2015', '09/05/2015');")
+//			.append("INSERT INTO `asistentes` (`usuario`,`evento`) VALUES ('UsuarioPrueba1','Evento numero 1');")
+//			.append("INSERT INTO `asistentes` (`usuario`,`evento`) VALUES ('UsuarioPrueba2','Evento numero 1');")
+//			.append("INSERT INTO `asistentes` (`usuario`,`evento`) VALUES ('UsuarioPrueba3','Evento numero 1');")
+//			.append("INSERT INTO `asistentes` (`usuario`,`evento`) VALUES ('UsuarioPrueba1','Evento numero 2');")
+//			.append("INSERT INTO `asistentes` (`usuario`,`evento`) VALUES ('UsuarioPrueba2','Evento numero 2');")
+//			.append("INSERT INTO `asistentes` (`usuario`,`evento`) VALUES ('UsuarioPrueba3','Evento numero 3');")
 		.toString();
 
 		final DataSource ds = createTestingDataSource();

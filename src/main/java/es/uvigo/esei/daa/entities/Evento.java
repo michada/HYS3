@@ -4,7 +4,7 @@ package es.uvigo.esei.daa.entities;
 public class Evento {
 	private int idEvento;
 	private String titulo;
-	private String usuario;
+	private int usuario;
 	private int maxAsistentes;
 	private String inicio;
 	private String fin;
@@ -13,7 +13,7 @@ public class Evento {
 		
 	}
 	
-	public Evento(int idEvento,String titulo, String usuario, int maxAsistentes, String inicio, String fin){
+	public Evento(int idEvento,String titulo, int usuario, int maxAsistentes, String inicio, String fin){
 		
 		this.idEvento = idEvento;
 		this.titulo = titulo;
@@ -36,10 +36,10 @@ public class Evento {
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-	public String getUsuario() {
+	public int getUsuario() {
 		return usuario;
 	}
-	public void setUsuario(String usuario) {
+	public void setUsuario(int usuario) {
 		this.usuario = usuario;
 	}
 	public int getMaxAsistentes() {
