@@ -1,0 +1,101 @@
+/*Estilos generales para la pagina*/
+	body{
+		font-family: Verdana,Geneva, sans-serif;
+	}
+	/* Estilos para alinear listas*/
+	li.right{
+		float:right;
+	}
+	li.left{
+		float:left;
+	}
+	/*Las capas por defecto se alinearan a la izquierda*/
+	div{
+		float:left;
+	}	
+	.other{
+		color:#828587;
+		font-size: 16px;
+		text-decoration: none;
+	}
+/*-----------------------------------*/
+/*Estilos concretos para las partes de la web*/
+	div#cabecera, div#cuerpo, div#pie{
+		width: 100%;
+	}
+	/*Estilos para la cabecera*/
+		div#cabecera{
+		height: 60px;
+		border-bottom: 1px #828587 solid;
+		}
+		a.title{
+		color:black;
+		text-decoration: none;
+		font-size: 24px;
+		font-weight: bold;	
+		}
+		a.title span{
+			color:#2bde73;
+		}
+		a.log{
+			color:#8dd5ff;
+			font-size: 18px;
+			text-decoration: none;
+			display: none;
+		}
+		div#cabecera li.buscar{
+			border-left: 1px solid #828587;
+			display: none;
+		}
+		a.user{
+		color:#8dd5ff;
+		font-size: 22px;
+		text-decoration: none;
+		}
+		#cabecera ul, #pie ul{
+		list-style: none;
+		margin: 0;
+		padding: 0;	
+		}
+		#cabecera ul li, #pie ul li{
+		padding: 15px;
+		}
+	/*-----------------------------------*/
+	/*Estilos para el cuerpo*/
+		#cuerpo{
+		}
+		
+		#categorias, #importantes, #patrocinados{
+			width: inherit;
+			height: 333px;
+			border-bottom: 1px #828587 solid;
+		}
+		
+		#categorias{
+		
+		}
+		
+		#importantes{
+		
+		}
+		
+		#patrocinados{
+			display:none;
+		}
+	/*-----------------------------------*/
+	/*Estilos para el pie*/
+	
+	/*-----------------------------------*/
+
+	
+
+	
+
+	
+	div#pie{
+		height:90px;
+	}
+	#pie a{
+		color: darkblue;
+	}
+/*-----------------------------------*/
