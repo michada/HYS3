@@ -25,7 +25,6 @@ import org.junit.Test;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
 import es.uvigo.esei.daa.TestUtils;
-import es.uvigo.esei.daa.dao.DAOException;
 import es.uvigo.esei.daa.entities.Evento;
 
 public class EventosTest extends JerseyTest {
@@ -63,12 +62,23 @@ public class EventosTest extends JerseyTest {
 	}
 	
 	@Test
-	public void testList() throws IOException {
+	public void testListOrdenado() throws IOException {
 		final Response response = target("eventos").request().get();
 		assertOkStatus(response);
 
-		final List<Evento> eventos = response.readEntity(new GenericType<List<Evento>>(){});
-		assertEquals(3, eventos.size());
+		final List<Evento> even = response.readEntity(new GenericType<List<Evento>>(){});
+		assertEquals(3, even.size());
+		
+		assertEquals(3, even.size());
+
+		assertEquals(3, even.get(0).getIdEvento());
+		assertEquals(10, even.get(0).getMaxAsistentes());
+
+		assertEquals(1, even.get(1).getIdEvento());
+		assertEquals(3, even.get(1).getMaxAsistentes());
+
+		assertEquals(2, even.get(2).getIdEvento());
+		assertEquals(2, even.get(2).getMaxAsistentes());
 	}
 
 	@Test
@@ -217,23 +227,5 @@ public class EventosTest extends JerseyTest {
 	@Test
 	public void testDeleteInvalidId() throws IOException {
 		assertBadRequestStatus(target("eventos/100").request().delete());
-	}
-	
-	@Test
-	public void testOrdenarEventos() throws DAOException {
-		final Response response = target("eventos").request().get();
-		assertOkStatus(response);
-
-		final List<Evento> even = response.readEntity(new GenericType<List<Evento>>(){});
-		assertEquals(3, even.size());
-
-		assertEquals(3, even.get(0).getIdEvento());
-		assertEquals(10, even.get(0).getMaxAsistentes());
-
-		assertEquals(1, even.get(1).getIdEvento());
-		assertEquals(3, even.get(1).getMaxAsistentes());
-
-		assertEquals(2, even.get(2).getIdEvento());
-		assertEquals(2, even.get(2).getMaxAsistentes());
 	}
 }

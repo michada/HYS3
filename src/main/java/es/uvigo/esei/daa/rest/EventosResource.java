@@ -29,9 +29,9 @@ public class EventosResource {
 	}
 
 	@GET
-	public Response list() {
+	public Response listOrdenado() {
 		try {
-			return Response.ok(this.dao.list(), MediaType.APPLICATION_JSON).build();
+			return Response.ok(this.dao.ordenar(), MediaType.APPLICATION_JSON).build();
 		} catch (DAOException e) {
 			LOG.log(Level.SEVERE, "Error listando eventos", e);
 			return Response.serverError().entity(e.getMessage()).build();
@@ -115,15 +115,4 @@ public class EventosResource {
 			return Response.serverError().entity(e.getMessage()).build();
 		}
 	}
-	
-	
-//	@GET
-//	public Response ordenar() {
-//		try {
-//			return Response.ok(this.dao.ordenar(), MediaType.APPLICATION_JSON).build();
-//		} catch (DAOException e) {
-//			LOG.log(Level.SEVERE, "Error ordenando eventos", e);
-//			return Response.serverError().entity(e.getMessage()).build();
-//		}
-//	}
 }
