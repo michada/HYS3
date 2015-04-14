@@ -87,7 +87,7 @@ public class EventosDAO extends DAO {
 	public Evento modify(int idEvento, String titulo, int usuario,
 			int maxAsistentes, String inicio, String fin) throws DAOException,
 			IllegalArgumentException {
-		if (titulo == null || inicio == null || fin == null) {
+		if (titulo == null || inicio == null || fin == null || maxAsistentes <= 0) {
 			throw new IllegalArgumentException(
 					"titulo, usuario, inicio y fin no pueden ser nulos y maxAsistentes debe ser mayor que 0");
 		}

@@ -61,7 +61,7 @@ public final class TestUtils {
 			.append("INSERT INTO `usuarios` (`idUsuario`,`login`,`password`,`nombre`) VALUES ('0', 'UsuarioPrueba3','prueba3', 'Jose');")
 			.append("INSERT INTO `eventos` (`idEvento`,`titulo`,`usuario`,`maxAsistentes`,`inicio`,`fin`) VALUES (0, 'Evento numero 1', 0, '3', '03/05/2015', '09/05/2015');")
 			.append("INSERT INTO `eventos` (`idEvento`,`titulo`,`usuario`,`maxAsistentes`,`inicio`,`fin`) VALUES (0, 'Evento numero 2', 1, '2', '03/05/2015', '09/05/2015');")
-			.append("INSERT INTO `eventos` (`idEvento`,`titulo`,`usuario`,`maxAsistentes`,`inicio`,`fin`) VALUES (0, 'Evento numero 3', 2, '1', '03/05/2015', '09/05/2015');")
+			.append("INSERT INTO `eventos` (`idEvento`,`titulo`,`usuario`,`maxAsistentes`,`inicio`,`fin`) VALUES (0, 'Evento numero 3', 2, '10', '03/05/2015', '09/05/2015');")
 //			.append("INSERT INTO `asistentes` (`usuario`,`evento`) VALUES ('UsuarioPrueba1','Evento numero 1');")
 //			.append("INSERT INTO `asistentes` (`usuario`,`evento`) VALUES ('UsuarioPrueba2','Evento numero 1');")
 //			.append("INSERT INTO `asistentes` (`usuario`,`evento`) VALUES ('UsuarioPrueba3','Evento numero 1');")

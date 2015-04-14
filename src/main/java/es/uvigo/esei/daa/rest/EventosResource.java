@@ -77,15 +77,15 @@ public class EventosResource {
 	@PUT
 	@Path("/{idEvento}")
 	public Response modify(
-		@PathParam("idEvento") int idEvento, 
+		@PathParam("idEvento") String idEvento, 
 		@FormParam("titulo") String titulo, 
-		@FormParam("usuario") int usuario,
-		@FormParam("maxAsistentes") int maxAsistentes, 
+		@FormParam("usuario") String usuario,
+		@FormParam("maxAsistentes") String maxAsistentes, 
 		@FormParam("inicio") String inicio,
 		@FormParam("fin") String fin
 	) {
 		try {
-			return Response.ok(this.dao.modify(idEvento, titulo, usuario, maxAsistentes, inicio, fin)).build();
+			return Response.ok(this.dao.modify(Integer.parseInt(idEvento), titulo, Integer.parseInt(usuario), Integer.parseInt(maxAsistentes), inicio, fin)).build();
 		} catch (IllegalArgumentException iae) {
 			iae.printStackTrace();
 			return Response.status(Response.Status.BAD_REQUEST)
@@ -115,4 +115,15 @@ public class EventosResource {
 			return Response.serverError().entity(e.getMessage()).build();
 		}
 	}
+	
+	
+//	@GET
+//	public Response ordenar() {
+//		try {
+//			return Response.ok(this.dao.ordenar(), MediaType.APPLICATION_JSON).build();
+//		} catch (DAOException e) {
+//			LOG.log(Level.SEVERE, "Error ordenando eventos", e);
+//			return Response.serverError().entity(e.getMessage()).build();
+//		}
+//	}
 }

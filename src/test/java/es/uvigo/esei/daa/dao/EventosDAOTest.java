@@ -166,14 +166,14 @@ public class EventosDAOTest {
 		assertEquals(4, even.get(0).getIdEvento());
 		assertEquals(50, even.get(0).getMaxAsistentes());
 
-		assertEquals(1, even.get(1).getIdEvento());
-		assertEquals(3, even.get(1).getMaxAsistentes());
+		assertEquals(3, even.get(1).getIdEvento());
+		assertEquals(10, even.get(1).getMaxAsistentes());
 
-		assertEquals(2, even.get(2).getIdEvento());
-		assertEquals(2, even.get(2).getMaxAsistentes());
+		assertEquals(1, even.get(2).getIdEvento());
+		assertEquals(3, even.get(2).getMaxAsistentes());
 
-		assertEquals(3, even.get(3).getIdEvento());
-		assertEquals(1, even.get(3).getMaxAsistentes());
+		assertEquals(2, even.get(3).getIdEvento());
+		assertEquals(2, even.get(3).getMaxAsistentes());
 
 	}
 }
