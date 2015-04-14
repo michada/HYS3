@@ -76,9 +76,9 @@ public class EventosTest extends JerseyTest {
 		assertOkStatus(response);
 		
 		final Evento evento = response.readEntity(Evento.class);
-		assertEquals(4, evento.getIdEvento());
+		assertEquals(1, evento.getIdEvento());
 		assertEquals("Evento numero 1", evento.getTitulo());
-		assertEquals("UsuarioPrueba1", evento.getUsuario());
+		assertEquals(0, evento.getUsuario());
 		assertEquals(3, evento.getMaxAsistentes());
 		assertEquals("03/05/2015", evento.getinicio());
 		assertEquals("09/05/2015", evento.getfin());
@@ -94,7 +94,7 @@ public class EventosTest extends JerseyTest {
 	public void testAdd() throws IOException {
 		final Form form = new Form();
 		form.param("titulo", "Evento añadido");
-		form.param("usuario", "UsuarioPrueba3");
+		form.param("usuario", "2");
 		form.param("inicio", "02/05/2015");
 		form.param("fin", "10/05/2015");
 		
@@ -106,7 +106,7 @@ public class EventosTest extends JerseyTest {
 		final Evento evento = response.readEntity(Evento.class);
 		assertEquals(4, evento.getIdEvento());
 		assertEquals("Evento añadido", evento.getTitulo());
-		assertEquals("UsuarioPrueba3", evento.getUsuario());
+		assertEquals(2, evento.getUsuario());
 		assertEquals("02/05/2015", evento.getinicio());
 		assertEquals("10/05/2015", evento.getfin());
 	}
@@ -171,7 +171,7 @@ public class EventosTest extends JerseyTest {
 	public void testModify() throws IOException {
 		final Form form = new Form();
 		form.param("titulo", "Evento modificado");
-		form.param("usuario", "UsuarioPrueba1");
+		form.param("usuario", "2");
 		form.param("inicio", "02/05/2015");
 		form.param("fin", "10/05/2015");
 		
@@ -183,7 +183,7 @@ public class EventosTest extends JerseyTest {
 		final Evento evento = response.readEntity(Evento.class);
 		assertEquals(1, evento.getIdEvento());
 		assertEquals("Evento modificado", evento.getTitulo());
-		assertEquals("UsuarioPrueba3", evento.getUsuario());
+		assertEquals(2, evento.getUsuario());
 		assertEquals("02/05/2015", evento.getinicio());
 		assertEquals("10/05/2015", evento.getfin());
 	}
@@ -205,10 +205,10 @@ public class EventosTest extends JerseyTest {
 
 	@Test
 	public void testDelete() throws IOException {
-		final Response response = target("eventos/4").request().delete();
+		final Response response = target("eventos/2").request().delete();
 		assertOkStatus(response);
 		
-		assertEquals(4, (int) response.readEntity(Integer.class));
+		assertEquals(2, (int) response.readEntity(Integer.class));
 	}
 
 	@Test

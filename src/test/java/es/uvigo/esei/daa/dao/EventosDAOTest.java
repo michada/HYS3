@@ -2,6 +2,8 @@ package es.uvigo.esei.daa.dao;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.List;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -67,8 +69,8 @@ public class EventosDAOTest {
 
 	@Test
 	public void testModify() throws DAOException {
-		this.dao.modify(1, "Evento modificado", 0, 50,
-				"02/05/2015", "10/05/2015");
+		this.dao.modify(1, "Evento modificado", 0, 50, "02/05/2015",
+				"10/05/2015");
 
 		final Evento event = this.dao.get(1);
 
@@ -82,44 +84,41 @@ public class EventosDAOTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testModifyInvalidId() throws DAOException {
-		this.dao.modify(100, "Evento modificado", 0, 50,
-				"02/05/2015", "10/05/2015");
+		this.dao.modify(100, "Evento modificado", 0, 50, "02/05/2015",
+				"10/05/2015");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testModifyNullTitulo() throws DAOException {
-		this.dao.modify(1, null, 0, 50, "02/05/2015",
-				"10/05/2015");
+		this.dao.modify(1, null, 0, 50, "02/05/2015", "10/05/2015");
 	}
 
-//	@Test(expected = IllegalArgumentException.class)
-//	public void testModifyNullUsuario() throws DAOException {
-//		this.dao.modify(1, "Evento modificado", null, 50, "02/05/2015",
-//				"10/05/2015");
-//	}
+	// @Test(expected = IllegalArgumentException.class)
+	// public void testModifyNullUsuario() throws DAOException {
+	// this.dao.modify(1, "Evento modificado", null, 50, "02/05/2015",
+	// "10/05/2015");
+	// }
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testModifyNullAsistentes() throws DAOException {
-		this.dao.modify(1, "Evento modificado", 0, 0,
-				"02/05/2015", "10/05/2015");
+		this.dao.modify(1, "Evento modificado", 0, 0, "02/05/2015",
+				"10/05/2015");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testModifyNullFechaInicio() throws DAOException {
-		this.dao.modify(1, "Evento modificado", 0, 50, null,
-				"10/05/2015");
+		this.dao.modify(1, "Evento modificado", 0, 50, null, "10/05/2015");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testModifyNullFechaFin() throws DAOException {
-		this.dao.modify(1, "Evento modificado", 0, 50,
-				"02/05/2015", null);
+		this.dao.modify(1, "Evento modificado", 0, 50, "02/05/2015", null);
 	}
 
 	@Test
 	public void testAdd() throws DAOException {
-		final Evento event = this.dao.add("Evento añadido", 2,
-				1, "05/05/2015", "15/05/2015");
+		final Evento event = this.dao.add("Evento añadido", 2, 1, "05/05/2015",
+				"15/05/2015");
 
 		assertEquals("Evento añadido", event.getTitulo());
 		assertEquals(2, event.getUsuario());
@@ -142,45 +141,39 @@ public class EventosDAOTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testAddNullAsistentes() throws DAOException {
-		this.dao.add("Evento modificado", 0, 0, "02/05/2015",
-				"10/05/2015");
+		this.dao.add("Evento modificado", 0, 0, "02/05/2015", "10/05/2015");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testAddNullFechaInicio() throws DAOException {
-		this.dao.add("Evento modificado", 0, 1, null,
-				"10/05/2015");
+		this.dao.add("Evento modificado", 0, 1, null, "10/05/2015");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testAddNullFechaFin() throws DAOException {
-		this.dao.add("Evento modificado", 0, 1, "02/05/2015",
-				null);
+		this.dao.add("Evento modificado", 0, 1, "02/05/2015", null);
 	}
 
 	@Test
 	public void testOrdenarEventos() throws DAOException {
-		final Evento newevent = this.dao.add("Evento añadido",
-				1, 5, "05/05/2015", "15/05/2015");
+		this.dao.add("Evento añadido", 1, 50, "05/05/2015", "15/05/2015");
 
-		this.dao.ordenar();
-		assertEquals(4, this.dao.list().size());//Comprueba si se ha añadido correctamente
-		
-		final Evento event = this.dao.get(1);
-		assertEquals(4, event.getIdEvento());
-		assertEquals(4, event.getMaxAsistentes());
+		assertEquals(4, this.dao.list().size());// Comprueba si se ha añadido
+												// correctamente
 
-		final Evento event2 = this.dao.get(2);
-		assertEquals(1, event2.getIdEvento());
-		assertEquals(3, event2.getMaxAsistentes());
+		List<Evento> even = this.dao.ordenar();
 
-		final Evento event3 = this.dao.get(3);
-		assertEquals(2, event3.getIdEvento());
-		assertEquals(2, event3.getMaxAsistentes());
+		assertEquals(4, even.get(0).getIdEvento());
+		assertEquals(50, even.get(0).getMaxAsistentes());
 
-		final Evento event4 = this.dao.get(4);
-		assertEquals(3, event4.getIdEvento());
-		assertEquals(1, event4.getMaxAsistentes());
+		assertEquals(1, even.get(1).getIdEvento());
+		assertEquals(3, even.get(1).getMaxAsistentes());
+
+		assertEquals(2, even.get(2).getIdEvento());
+		assertEquals(2, even.get(2).getMaxAsistentes());
+
+		assertEquals(3, even.get(3).getIdEvento());
+		assertEquals(1, even.get(3).getMaxAsistentes());
 
 	}
 }

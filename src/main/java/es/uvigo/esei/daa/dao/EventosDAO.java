@@ -87,8 +87,7 @@ public class EventosDAO extends DAO {
 	public Evento modify(int idEvento, String titulo, int usuario,
 			int maxAsistentes, String inicio, String fin) throws DAOException,
 			IllegalArgumentException {
-		if (titulo == null || maxAsistentes == 0
-				|| inicio == null || fin == null) {
+		if (titulo == null || inicio == null || fin == null) {
 			throw new IllegalArgumentException(
 					"titulo, usuario, inicio y fin no pueden ser nulos y maxAsistentes debe ser mayor que 0");
 		}
@@ -121,12 +120,10 @@ public class EventosDAO extends DAO {
 	public Evento add(String titulo, int usuario, int maxAsistentes,
 			String inicio, String fin) throws DAOException,
 			IllegalArgumentException {
-		if (titulo == null || maxAsistentes == 0
-				|| inicio == null || fin == null) {
+		if (titulo == null || inicio == null || fin == null || usuario <= 0) {
 			throw new IllegalArgumentException(
 					"titulo, usuario, inicio y fin no pueden ser nulos y maxAsistentes debe ser mayor que 0");
 		}
-
 		try (final Connection conn = this.getConnection()) {
 			final String query = "INSERT INTO Eventos VALUES(null, ?, ?, ?, ?, ?)";
 
