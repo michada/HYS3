@@ -87,7 +87,7 @@ public class EventosDAO extends DAO {
 	public Evento modify(int idEvento, String titulo, int usuario,
 			int maxAsistentes, String inicio, String fin) throws DAOException,
 			IllegalArgumentException {
-		if (titulo == null || maxAsistentes > 0
+		if (titulo == null || maxAsistentes == 0
 				|| inicio == null || fin == null) {
 			throw new IllegalArgumentException(
 					"titulo, usuario, inicio y fin no pueden ser nulos y maxAsistentes debe ser mayor que 0");
@@ -121,7 +121,7 @@ public class EventosDAO extends DAO {
 	public Evento add(String titulo, int usuario, int maxAsistentes,
 			String inicio, String fin) throws DAOException,
 			IllegalArgumentException {
-		if (titulo == null || maxAsistentes > 0
+		if (titulo == null || maxAsistentes == 0
 				|| inicio == null || fin == null) {
 			throw new IllegalArgumentException(
 					"titulo, usuario, inicio y fin no pueden ser nulos y maxAsistentes debe ser mayor que 0");
@@ -161,28 +161,28 @@ public class EventosDAO extends DAO {
 		}
 	}
 
-//	public List<Evento> ordenar() throws DAOException {
-//		try (final Connection conn = this.getConnection()) {
-//			try (Statement statement = conn.createStatement()) {
-//				try (ResultSet result = statement
-//						.executeQuery("SELECT * FROM Eventos ORDER BY maxAsistentes")) {
-//					final List<Evento> eventos = new LinkedList<>();
-//
-//					while (result.next()) {
-//						eventos.add(new Evento(result.getInt("idEvento"),
-//								result.getString("titulo"), result
-//										.getString("usuario"), result
-//										.getInt("maxAsistentes"), result
-//										.getString("inicio"), result
-//										.getString("fin")));
-//					}
-//
-//					return eventos;
-//				}
-//			}
-//		} catch (SQLException e) {
-//			LOG.log(Level.SEVERE, "Error ordenando eventos", e);
-//			throw new DAOException(e);
-//		}
-//	}
+	public List<Evento> ordenar() throws DAOException {
+		try (final Connection conn = this.getConnection()) {
+			try (Statement statement = conn.createStatement()) {
+				try (ResultSet result = statement
+						.executeQuery("SELECT * FROM Eventos ORDER BY maxAsistentes DESC")) {
+					final List<Evento> eventos = new LinkedList<>();
+
+					while (result.next()) {
+						eventos.add(new Evento(result.getInt("idEvento"),
+								result.getString("titulo"), result
+										.getInt("usuario"), result
+										.getInt("maxAsistentes"), result
+										.getString("inicio"), result
+										.getString("fin")));
+					}
+
+					return eventos;
+				}
+			}
+		} catch (SQLException e) {
+			LOG.log(Level.SEVERE, "Error ordenando eventos", e);
+			throw new DAOException(e);
+		}
+	}
 }

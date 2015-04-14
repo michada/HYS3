@@ -79,7 +79,7 @@ public class EventosResource {
 	public Response modify(
 		@PathParam("idEvento") int idEvento, 
 		@FormParam("titulo") String titulo, 
-		@FormParam("usuario") String usuario,
+		@FormParam("usuario") int usuario,
 		@FormParam("maxAsistentes") int maxAsistentes, 
 		@FormParam("inicio") String inicio,
 		@FormParam("fin") String fin
@@ -99,7 +99,7 @@ public class EventosResource {
 	@POST
 	public Response add(
 			@FormParam("titulo") String titulo, 
-			@FormParam("usuario") String usuario,
+			@FormParam("usuario") int usuario,
 			@FormParam("maxAsistentes") int maxAsistentes, 
 			@FormParam("inicio") String inicio,
 			@FormParam("fin") String fin
