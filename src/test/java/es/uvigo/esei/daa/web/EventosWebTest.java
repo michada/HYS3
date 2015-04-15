@@ -9,9 +9,13 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import com.thoughtworks.selenium.*;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import es.uvigo.esei.daa.TestUtils;
@@ -58,6 +62,9 @@ public class EventosWebTest {
 	@Test
 	public void testListOrdenado() throws Exception {
 		verifyXpathCount("//tr", 3);
+		WebElement element = driver.findElement(By.name("tituloEvento"));
+		assertEquals("Evento numero 3", element.getTagName());
+		// a ver si asi funciona algo
 	}
 
 //	@Test
