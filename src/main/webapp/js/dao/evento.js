@@ -1,4 +1,4 @@
-function listPeople(done, fail, always) {
+function listEventos(done, fail, always) {
 	done = typeof done !== 'undefined' ? done : function() {};
 	fail = typeof fail !== 'undefined' ? fail : function() {};
 	always = typeof always !== 'undefined' ? always : function() {};

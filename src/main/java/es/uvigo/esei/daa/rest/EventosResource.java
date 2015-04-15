@@ -31,7 +31,7 @@ public class EventosResource {
 	@GET
 	public Response listOrdenado() {
 		try {
-			return Response.ok(this.dao.ordenar(), MediaType.APPLICATION_JSON).build();
+			return Response.ok(this.dao.list(), MediaType.APPLICATION_JSON).build();
 		} catch (DAOException e) {
 			LOG.log(Level.SEVERE, "Error listando eventos", e);
 			return Response.serverError().entity(e.getMessage()).build();
@@ -111,7 +111,7 @@ public class EventosResource {
 			return Response.status(Response.Status.BAD_REQUEST)
 				.entity(iae.getMessage()).build();
 		} catch (DAOException e) {
-			LOG.log(Level.SEVERE, "Error añadiendo un evento", e);
+			LOG.log(Level.SEVERE, "Error aï¿½adiendo un evento", e);
 			return Response.serverError().entity(e.getMessage()).build();
 		}
 	}
