@@ -15,7 +15,7 @@ SET time_zone = "+00:00";
 -- Base de datos: `HaveYouSeen_DB`
 --
 CREATE DATABASE IF NOT EXISTS `haveyouseen_db` DEFAULT CHARACTER SET latin1 COLLATE latin1_spanish_ci;
-USE `HaveYouSeen_DB`;
+USE `haveyouseen_db`;
 
 -- --------------------------------------------------------
 
