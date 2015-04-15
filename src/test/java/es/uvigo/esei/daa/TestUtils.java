@@ -39,8 +39,8 @@ public final class TestUtils {
 	
 	public static void clearTestDatabase() throws SQLException {
 		final String queries = new StringBuilder()
-			.append("DELETE FROM `eventos`;")
-			.append("DELETE FROM `usuarios`;")
+			.append("DELETE FROM `Eventos`;")
+			.append("DELETE FROM `Usuarios`;")
 			//.append("DELETE FROM `asistentes`;")
 		.toString();
 
@@ -56,12 +56,12 @@ public final class TestUtils {
 		final String queries = new StringBuilder()
 			.append("ALTER TABLE `Usuarios` AUTO_INCREMENT = 1;")
 			.append("ALTER TABLE `Eventos` AUTO_INCREMENT = 1;")
-			.append("INSERT INTO `usuarios` (`idUsuario`,`login`,`password`,`nombre`) VALUES ('0', 'UsuarioPrueba1','prueba1', 'Pepe');")
-			.append("INSERT INTO `usuarios` (`idUsuario`,`login`,`password`,`nombre`) VALUES ('0', 'UsuarioPrueba2','prueba2', 'Maria');")
-			.append("INSERT INTO `usuarios` (`idUsuario`,`login`,`password`,`nombre`) VALUES ('0', 'UsuarioPrueba3','prueba3', 'Jose');")
-			.append("INSERT INTO `eventos` (`idEvento`,`titulo`,`usuario`,`maxAsistentes`,`inicio`,`fin`) VALUES (0, 'Evento numero 1', 0, '3', '03/05/2015', '09/05/2015');")
-			.append("INSERT INTO `eventos` (`idEvento`,`titulo`,`usuario`,`maxAsistentes`,`inicio`,`fin`) VALUES (0, 'Evento numero 2', 1, '2', '03/05/2015', '09/05/2015');")
-			.append("INSERT INTO `eventos` (`idEvento`,`titulo`,`usuario`,`maxAsistentes`,`inicio`,`fin`) VALUES (0, 'Evento numero 3', 2, '10', '03/05/2015', '09/05/2015');")
+			.append("INSERT INTO `Usuarios` (`idUsuario`,`login`,`password`,`nombre`) VALUES ('0', 'UsuarioPrueba1','prueba1', 'Pepe');")
+			.append("INSERT INTO `Usuarios` (`idUsuario`,`login`,`password`,`nombre`) VALUES ('0', 'UsuarioPrueba2','prueba2', 'Maria');")
+			.append("INSERT INTO `Usuarios` (`idUsuario`,`login`,`password`,`nombre`) VALUES ('0', 'UsuarioPrueba3','prueba3', 'Jose');")
+			.append("INSERT INTO `Eventos` (`idEvento`,`titulo`,`usuario`,`maxAsistentes`,`inicio`,`fin`) VALUES (0, 'Evento numero 1', 0, '3', '03/05/2015', '09/05/2015');")
+			.append("INSERT INTO `Eventos` (`idEvento`,`titulo`,`usuario`,`maxAsistentes`,`inicio`,`fin`) VALUES (0, 'Evento numero 2', 1, '2', '03/05/2015', '09/05/2015');")
+			.append("INSERT INTO `Eventos` (`idEvento`,`titulo`,`usuario`,`maxAsistentes`,`inicio`,`fin`) VALUES (0, 'Evento numero 3', 2, '10', '03/05/2015', '09/05/2015');")
 //			.append("INSERT INTO `asistentes` (`usuario`,`evento`) VALUES ('UsuarioPrueba1','Evento numero 1');")
 //			.append("INSERT INTO `asistentes` (`usuario`,`evento`) VALUES ('UsuarioPrueba2','Evento numero 1');")
 //			.append("INSERT INTO `asistentes` (`usuario`,`evento`) VALUES ('UsuarioPrueba3','Evento numero 1');")
