@@ -9,13 +9,13 @@ import java.util.Set;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
-import es.uvigo.esei.daa.rest.UsuariosResource;
+import es.uvigo.esei.daa.rest.EventosResource;
 
 @ApplicationPath("/rest/*")
 public class DAAExampleApplication extends Application {
 	@Override
 	public Set<Class<?>> getClasses() {
-		return new HashSet<>(Arrays.asList(UsuariosResource.class));
+		return new HashSet<>(Arrays.asList(EventosResource.class));
 	}
 	
 	@Override
