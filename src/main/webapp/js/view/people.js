@@ -121,7 +121,7 @@ function initPeople() {
 			});
 		});
 		
-		$(peopleFormQuery).submit(function(event) {
+		/*$(peopleFormQuery).submit(function(event) {
 			var person = formToPerson();
 			
 			if (isEditing()) {
@@ -148,6 +148,6 @@ function initPeople() {
 			return false;
 		});
 		
-		$('#btnClear').click(resetForm);
+		$('#btnClear').click(resetForm);*/
 	});
 };

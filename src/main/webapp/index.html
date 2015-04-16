@@ -22,32 +22,14 @@
                     Categorias
                 </div>
                 <div id="importantes" class="left">
-                    <div class="evento">
-                    
-                        <ul>
-                            <li class="imagenEvento"><div><a href="#"><img src="media/img/poe.jpg" /></a></div></li>
-                            <li class="descEvento">
-                                <div>
-                                    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.js"></script>
+                	<h1>Eventos Importantes</h1>
+	            	<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.js"></script>
 					<script type="text/javascript" src="js/view/evento.js"></script>
-				<script type="text/javascript">
-					$(document).ready(function() {
-						//insertEventosForm($('#eventos-container'));
-						//insertEventosList($('#eventos-container'));
-						initEventos();
-					});
-				</script>
-                            </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="evento">
-                        <div class="imagenEvento"><a href="#"><img src="media/img/poe.jpg" /></a></div>
-                        <div class="descEvento">
-                            <div class="tituloEvento"><p>Este es el título de un evento</p></div>
-                            <div class="propEvento"><p>Estas son las propiedades del evento</p></div>
-                        </div>
-                    </div>
+					<script type="text/javascript">
+						$(document).ready(function() {
+							listarEventos($('#importantes'));
+						});
+					</script>
                 </div>
                 <div id="patrocinados" class="left">
                     Eventos patrocinados
