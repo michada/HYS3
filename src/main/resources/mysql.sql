@@ -2,9 +2,9 @@
 -- Usuario con los privilegios necesarios para la DB
 --
 
-GRANT USAGE ON *.* TO 'Admin'@'localhost' IDENTIFIED BY PASSWORD '*4ACFE3202A5FF5CF467898FC58AAB1D615029441';
+GRANT USAGE ON *.* TO 'root'@'localhost' IDENTIFIED BY PASSWORD '*4ACFE3202A5FF5CF467898FC58AAB1D615029441';
 
-GRANT ALL PRIVILEGES ON `haveyouseen\_db`.* TO 'Admin'@'localhost' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON `haveyouseen\_db`.* TO 'root'@'localhost' WITH GRANT OPTION;
 
 -- --------------------------------------------------------
 
