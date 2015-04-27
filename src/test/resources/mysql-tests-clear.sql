@@ -1,5 +1,2 @@
-DELETE FROM `Asistentes`;
 DELETE FROM `Eventos`;
-DELETE FROM `Usuarios`;
 ALTER TABLE `Eventos` AUTO_INCREMENT = 1;
-ALTER TABLE `Usuarios` AUTO_INCREMENT = 1;

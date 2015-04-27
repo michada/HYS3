@@ -1,2 +1,2 @@
-DELETE FROM `eventos`;
-ALTER TABLE `eventos` AUTO_INCREMENT = 1;
+DELETE FROM `Eventos`;
+ALTER TABLE `Eventos` AUTO_INCREMENT = 1;
