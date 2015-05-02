@@ -93,7 +93,11 @@ public class EventosTest extends JerseyTest {
 		assertEquals(3, evento.getMaxAsistentes());
 		assertEquals("03/05/2015", evento.getinicio());
 		assertEquals("09/05/2015", evento.getfin());
-
+		assertEquals("Pontevedra", event.getLocalidad());
+		assertEquals("descripcion corta1", event.getDescripcion);
+		assertEquals("descripcion larga1", event.getDescripcionDetallada());
+		assertEquals("Libros", event.getCategoria());
+		assertEquals("Local 1", event.getLocal());
 	}
 
 	@Test
@@ -108,6 +112,11 @@ public class EventosTest extends JerseyTest {
 		form.param("usuario", "2");
 		form.param("inicio", "02/05/2015");
 		form.param("fin", "10/05/2015");
+		form.param("localidad", "Madrid");
+		form.param("descripcion", "descripcion corta4");
+		form.param("descripcionDetallada", "descripcion larga4");
+		form.param("categoria", "Peliculas");
+		form.param("local", "Local 4");
 		
 		final Response response = target("eventos")
 			.request(MediaType.APPLICATION_JSON_TYPE)
@@ -120,6 +129,11 @@ public class EventosTest extends JerseyTest {
 		assertEquals(2, evento.getUsuario());
 		assertEquals("02/05/2015", evento.getinicio());
 		assertEquals("10/05/2015", evento.getfin());
+		assertEquals("Madrid", evento.getLocalidad());
+		assertEquals("descripcion corta4", evento.getDescripcion);
+		assertEquals("descripcion larga4", evento.getDescripcionDetallada());
+		assertEquals("Peliculas", evento.getCategoria());
+		assertEquals("Local 4", evento.getLocal());
 	}
 
 	@Test
@@ -128,48 +142,11 @@ public class EventosTest extends JerseyTest {
 		form.param("usuario", "UsuarioPrueba1");
 		form.param("inicio", "02/05/2015");
 		form.param("fin", "10/05/2015");
-		
-		final Response response = target("eventos")
-			.request(MediaType.APPLICATION_JSON_TYPE)
-			.post(Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE));
-		
-		assertBadRequestStatus(response);
-	}
-
-	@Test
-	public void testAddMissingUsuario() throws IOException {
-		final Form form = new Form();
-		form.param("titulo", "Evento modificado");
-		form.param("inicio", "02/05/2015");
-		form.param("fin", "10/05/2015");
-		
-		final Response response = target("eventos")
-			.request(MediaType.APPLICATION_JSON_TYPE)
-			.post(Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE));
-		
-		assertBadRequestStatus(response);
-	}
-	
-	@Test
-	public void testAddMissingFechaInicio() throws IOException {
-		final Form form = new Form();
-		form.param("titulo", "Evento modificado");
-		form.param("usuario", "UsuarioPrueba1");
-		form.param("fin", "10/05/2015");
-		
-		final Response response = target("eventos")
-			.request(MediaType.APPLICATION_JSON_TYPE)
-			.post(Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE));
-		
-		assertBadRequestStatus(response);
-	}
-	
-	@Test
-	public void testAddMissingFechaFin() throws IOException {
-		final Form form = new Form();
-		form.param("titulo", "Evento modificado");
-		form.param("usuario", "UsuarioPrueba1");
-		form.param("inicio", "02/05/2015");
+		form.param("localidad", "Madrid");
+		form.param("descripcion", "descripcion corta4");
+		form.param("descripcionDetallada", "descripcion larga4");
+		form.param("categoria", "Peliculas");
+		form.param("local", "Local 4");
 		
 		final Response response = target("eventos")
 			.request(MediaType.APPLICATION_JSON_TYPE)
@@ -187,6 +164,11 @@ public class EventosTest extends JerseyTest {
 		form.param("maxAsistentes", "2");
 		form.param("inicio", "02/05/2015");
 		form.param("fin", "10/05/2015");
+		form.param("localidad", "Madrid");
+		form.param("descripcion", "descripcion corta modificada");
+		form.param("descripcionDetallada", "descripcion larga modificada");
+		form.param("categoria", "Series");
+		form.param("local", "Local 5");
 		
 		final Response response = target("eventos/1")
 			.request(MediaType.APPLICATION_JSON_TYPE)
@@ -199,6 +181,11 @@ public class EventosTest extends JerseyTest {
 		assertEquals(1, evento.getUsuario());
 		assertEquals("02/05/2015", evento.getinicio());
 		assertEquals("10/05/2015", evento.getfin());
+		assertEquals("Madrid", evento.getLocalidad());
+		assertEquals("descripcion corta modificada4", evento.getDescripcion);
+		assertEquals("descripcion larga modificada", evento.getDescripcionDetallada());
+		assertEquals("Series", evento.getCategoria());
+		assertEquals("Local 5", evento.getLocal());
 	}
 
 	@Test
@@ -208,6 +195,11 @@ public class EventosTest extends JerseyTest {
 		form.param("usuario", "UsuarioPrueba1");
 		form.param("inicio", "02/05/2015");
 		form.param("fin", "10/05/2015");
+		form.param("localidad", "Madrid");
+		form.param("descripcion", "descripcion corta modificada");
+		form.param("descripcionDetallada", "descripcion larga modificada");
+		form.param("categoria", "Series");
+		form.param("local", "Local 5");
 		
 		final Response response = target("eventos/100")
 			.request(MediaType.APPLICATION_JSON_TYPE)

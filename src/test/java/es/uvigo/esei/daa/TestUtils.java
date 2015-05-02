@@ -52,9 +52,9 @@ public final class TestUtils {
 	public static void initTestDatabase() throws SQLException {
 		final String queries = new StringBuilder()
 				.append("ALTER TABLE `Eventos` AUTO_INCREMENT = 1;")
-				.append("INSERT INTO `Eventos` (`idEvento`,`titulo`,`usuario`,`maxAsistentes`,`inicio`,`fin`) VALUES (0, 'Evento numero 1', 0, '3', '03/05/2015', '09/05/2015');")
-				.append("INSERT INTO `Eventos` (`idEvento`,`titulo`,`usuario`,`maxAsistentes`,`inicio`,`fin`) VALUES (0, 'Evento numero 2', 1, '2', '03/05/2015', '09/05/2015');")
-				.append("INSERT INTO `Eventos` (`idEvento`,`titulo`,`usuario`,`maxAsistentes`,`inicio`,`fin`) VALUES (0, 'Evento numero 3', 2, '10', '03/05/2015', '09/05/2015');")
+				.append("INSERT INTO `Eventos` (`idEvento`,`titulo`,`usuario`,`maxAsistentes`,`inicio`,`fin`, `localidad`, `descripcion`, `descripcionDetallada`, `categoria`, `local`) VALUES (0, 'Evento numero 1', 0, '3', '03/05/2015', '09/05/2015', 'Pontevedra', 'descripcion corta1', 'descripcion larga1', 'Libros', 'Local 1');")
+				.append("INSERT INTO `Eventos` (`idEvento`,`titulo`,`usuario`,`maxAsistentes`,`inicio`,`fin`, `localidad`, `descripcion`, `descripcionDetallada`, `categoria`, `local`) VALUES (0, 'Evento numero 2', 1, '2', '03/05/2015', '09/05/2015', 'Pontevedra', 'descripcion corta2', 'descripcion larga2', 'Peliculas', 'Local 2');")
+				.append("INSERT INTO `Eventos` (`idEvento`,`titulo`,`usuario`,`maxAsistentes`,`inicio`,`fin`, `localidad`, `descripcion`, `descripcionDetallada`, `categoria`, `local`) VALUES (0, 'Evento numero 3', 2, '10', '03/05/2015', '09/05/2015', 'Madrid', 'descripcion corta3', 'descripcion larga3', 'Series', 'Local 3');")
 				.toString();
 
 		final DataSource ds = createTestingDataSource();
