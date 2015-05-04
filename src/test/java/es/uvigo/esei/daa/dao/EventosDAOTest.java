@@ -88,7 +88,8 @@ public class EventosDAOTest {
 		assertEquals("10/05/2015", event.getfin());
 		assertEquals("Pontevedra", event.getLocalidad());
 		assertEquals("descripcion corta modificada", event.getDescripcion);
-		assertEquals("descripcion larga modificada", event.getDescripcionDetallada());
+		assertEquals("descripcion larga modificada",
+				event.getDescripcionDetallada());
 		assertEquals("Libros", event.getCategoria());
 		assertEquals("Local 3", event.getLocal());
 	}
@@ -102,8 +103,8 @@ public class EventosDAOTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testModifyNullTitulo() throws DAOException {
-		this.dao.modify(1, null, 0, 50, "02/05/2015",
-				"10/05/2015", "Pontevedra", "descripcion corta modificada",
+		this.dao.modify(1, null, 0, 50, "02/05/2015", "10/05/2015",
+				"Pontevedra", "descripcion corta modificada",
 				"descripcion larga modificada", "Libros", "Local 3");
 	}
 
@@ -122,41 +123,46 @@ public class EventosDAOTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testModifyNullFechaInicio() throws DAOException {
-		this.dao.modify(1, "Evento modificado", 0, 50, null,
-				"10/05/2015", "Pontevedra", "descripcion corta modificada",
+		this.dao.modify(1, "Evento modificado", 0, 50, null, "10/05/2015",
+				"Pontevedra", "descripcion corta modificada",
 				"descripcion larga modificada", "Libros", "Local 3");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testModifyNullFechaFin() throws DAOException {
-		this.dao.modify(1, "Evento modificado", 0, 50, "02/05/2015",
-				null, "Pontevedra", "descripcion corta modificada",
+		this.dao.modify(1, "Evento modificado", 0, 50, "02/05/2015", null,
+				"Pontevedra", "descripcion corta modificada",
 				"descripcion larga modificada", "Libros", "Local 3");
 	}
+
 	@Test(expected = IllegalArgumentException.class)
 	public void testModifyNullLocalidad() throws DAOException {
 		this.dao.modify(1, "Evento modificado", 0, 50, "02/05/2015",
 				"10/05/2015", null, "descripcion corta modificada",
 				"descripcion larga modificada", "Libros", "Local 3");
 	}
+
 	@Test(expected = IllegalArgumentException.class)
 	public void testModifyNullDescripcionCorta() throws DAOException {
 		this.dao.modify(1, "Evento modificado", 0, 50, "02/05/2015",
 				"10/05/2015", "Pontevedra", null,
 				"descripcion larga modificada", "Libros", "Local 3");
 	}
+
 	@Test(expected = IllegalArgumentException.class)
 	public void testModifyNullDescripcionLarga() throws DAOException {
 		this.dao.modify(1, "Evento modificado", 0, 50, "02/05/2015",
 				"10/05/2015", "Pontevedra", "descripcion corta modificada",
 				null, "Libros", "Local 3");
 	}
+
 	@Test(expected = IllegalArgumentException.class)
 	public void testModifyNullCategoria() throws DAOException {
 		this.dao.modify(1, "Evento modificado", 0, 50, "02/05/2015",
 				"10/05/2015", "Pontevedra", "descripcion corta modificada",
 				"descripcion larga modificada", null, "Local 3");
 	}
+
 	@Test(expected = IllegalArgumentException.class)
 	public void testModifyNullLocal() throws DAOException {
 		this.dao.modify(1, "Evento modificado", 0, 50, "02/05/2015",
@@ -179,7 +185,7 @@ public class EventosDAOTest {
 		assertEquals("descripcion larga5", event.getDescripcionDetallada());
 		assertEquals("Libros", event.getCategoria());
 		assertEquals("Local 5", event.getLocal());
-		
+
 		final Evento eventGet = this.dao.get(event.getIdEvento());
 
 		assertEquals(event.getIdEvento(), eventGet.getIdEvento());
@@ -189,89 +195,120 @@ public class EventosDAOTest {
 		assertEquals("15/05/2015", eventGet.getfin());
 		assertEquals("Pontevedra", eventGet.getLocalidad());
 		assertEquals("descripcion corta modificada", eventGet.getDescripcion);
-		assertEquals("descripcion larga modificada", eventGet.getDescripcionDetallada());
+		assertEquals("descripcion larga modificada",
+				eventGet.getDescripcionDetallada());
 		assertEquals("Libros", eventGet.getCategoria());
 		assertEquals("Local 3", eventGet.getLocal());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testAddNullTitulo() throws DAOException {
-		this.dao.add(null, 2, 1, "05/05/2015",
-				"15/05/2015", "Barcelona", "descripcion corta5",
-				"descripcion larga5", "Libros", "Local 5");
+		this.dao.add(null, 2, 1, "05/05/2015", "15/05/2015", "Barcelona",
+				"descripcion corta5", "descripcion larga5", "Libros", "Local 5");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testAddNullAsistentes() throws DAOException {
-		this.dao.add("Evento añadido", 2, 0, "05/05/2015",
-				"15/05/2015", "Barcelona", "descripcion corta5",
-				"descripcion larga5", "Libros", "Local 5");
+		this.dao.add("Evento añadido", 2, 0, "05/05/2015", "15/05/2015",
+				"Barcelona", "descripcion corta5", "descripcion larga5",
+				"Libros", "Local 5");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testAddNullFechaInicio() throws DAOException {
-		this.dao.add("Evento añadido", 2, 1, null,
-				"15/05/2015", "Barcelona", "descripcion corta5",
-				"descripcion larga5", "Libros", "Local 5");
+		this.dao.add("Evento añadido", 2, 1, null, "15/05/2015", "Barcelona",
+				"descripcion corta5", "descripcion larga5", "Libros", "Local 5");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testAddNullFechaFin() throws DAOException {
-		this.dao.add("Evento añadido", 2, 1, "05/05/2015",
-				null, "Barcelona", "descripcion corta5",
-				"descripcion larga5", "Libros", "Local 5");
+		this.dao.add("Evento añadido", 2, 1, "05/05/2015", null, "Barcelona",
+				"descripcion corta5", "descripcion larga5", "Libros", "Local 5");
 	}
+
 	@Test(expected = IllegalArgumentException.class)
 	public void testAddNullLocalidad() throws DAOException {
-		this.dao.add("Evento añadido", 2, 1, "05/05/2015",
-				"15/05/2015", null, "descripcion corta5",
-				"descripcion larga5", "Libros", "Local 5");
+		this.dao.add("Evento añadido", 2, 1, "05/05/2015", "15/05/2015", null,
+				"descripcion corta5", "descripcion larga5", "Libros", "Local 5");
 	}
+
 	@Test(expected = IllegalArgumentException.class)
 	public void testAddNullDescripcionCorta() throws DAOException {
-		this.dao.add("Evento añadido", 2, 1, "05/05/2015",
-				"15/05/2015", "Barcelona", null,
-				"descripcion larga5", "Libros", "Local 5");
+		this.dao.add("Evento añadido", 2, 1, "05/05/2015", "15/05/2015",
+				"Barcelona", null, "descripcion larga5", "Libros", "Local 5");
 	}
+
 	@Test(expected = IllegalArgumentException.class)
 	public void testAddNullDescripcionLaarga() throws DAOException {
-		this.dao.add("Evento añadido", 2, 1, "05/05/2015",
-				"15/05/2015", "Barcelona", "descripcion corta5",
-				null, "Libros", "Local 5");
+		this.dao.add("Evento añadido", 2, 1, "05/05/2015", "15/05/2015",
+				"Barcelona", "descripcion corta5", null, "Libros", "Local 5");
 	}
+
 	@Test(expected = IllegalArgumentException.class)
 	public void testAddNullCategoria() throws DAOException {
-		this.dao.add("Evento añadido", 2, 1, "05/05/2015",
-				"15/05/2015", "Barcelona", "descripcion corta5",
-				"descripcion larga5", null, "Local 5");
+		this.dao.add("Evento añadido", 2, 1, "05/05/2015", "15/05/2015",
+				"Barcelona", "descripcion corta5", "descripcion larga5", null,
+				"Local 5");
 	}
+
 	@Test(expected = IllegalArgumentException.class)
 	public void testAddNullLocal() throws DAOException {
-		this.dao.add("Evento añadido", 2, 1, "05/05/2015",
-				"15/05/2015", "Barcelona", "descripcion corta5",
-				"descripcion larga5", "Libros", null);
+		this.dao.add("Evento añadido", 2, 1, "05/05/2015", "15/05/2015",
+				"Barcelona", "descripcion corta5", "descripcion larga5",
+				"Libros", null);
 	}
 
 	@Test
 	public void testOrdenarEventos() throws DAOException {
-		this.dao.add("Evento añadido", 1, 50, "05/05/2015", "15/05/2015");
+		this.dao.add("Evento añadido", 2, 5, "05/05/2015", "15/05/2015",
+				"Pontevedra", "descripcion corta5", "descripcion larga5",
+				"Libros", "Local 5");
 
 		assertEquals(4, this.dao.list().size());// Comprueba si se ha añadido
 												// correctamente
 
-		List<Evento> even = this.dao.ordenar();
+		List<Evento> even = this.dao.ordenar("Pontevedra");
+		
+		assertEquals(3, even.size());
 
 		assertEquals(4, even.get(0).getIdEvento());
-		assertEquals(50, even.get(0).getMaxAsistentes());
+		assertEquals(1, even.get(1).getIdEvento());
+		assertEquals(2, even.get(2).getIdEvento());
+	}
 
-		assertEquals(3, even.get(1).getIdEvento());
-		assertEquals(10, even.get(1).getMaxAsistentes());
+	@Test
+	public void buscarEventos() throws DAOException {
+		List<Evento> even = this.dao.buscar("Evento");
 
-		assertEquals(1, even.get(2).getIdEvento());
-		assertEquals(3, even.get(2).getMaxAsistentes());
+		assertEquals(3, even.size());
 
-		assertEquals(2, even.get(3).getIdEvento());
-		assertEquals(2, even.get(3).getMaxAsistentes());
+		assertEquals("Evento numero 1", even.get(0).getTitulo());
+		assertEquals("Evento numero 2", even.get(1).getTitulo());
+		assertEquals("Evento numero 3", even.get(2).getTitulo());
 
+		this.dao.add("Prueba", 2, 1, "05/05/2015", "15/05/2015", "Barcelona",
+				"descripcion corta5", "descripcion larga5", "Libros", "Local 5");
+		
+		List<Evento> even2 = this.dao.buscar("Pru");
+
+		assertEquals(1, even2.size());
+		
+		assertEquals("Prueba", even.get(0).getTitulo());
+	}
+	
+	@Test void buscarEventosNullTitulo() throws DAOException{
+		List<Evento> even = this.dao.buscar(null);
+
+		assertEquals(3, even.size());
+		
+		List<Evento> even2 = this.dao.buscar(" ");
+
+		assertEquals(3, even2.size());
+	}
+	
+	@Test void buscarEventosNullResultado() throws DAOException{
+		List<Evento> even = this.dao.buscar("Nunca va a encontrar esto");
+
+		assertEquals(0, even.size());
 	}
 }
