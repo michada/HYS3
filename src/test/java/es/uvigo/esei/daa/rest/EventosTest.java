@@ -112,6 +112,7 @@ public class EventosTest extends JerseyTest {
 		form.param("usuario", "2");
 		form.param("inicio", "02/05/2015");
 		form.param("fin", "10/05/2015");
+		form.param("maxAsistentes", "4");
 		form.param("localidad", "Madrid");
 		form.param("descripcion", "descripcion corta4");
 		form.param("descripcionDetallada", "descripcion larga4");
@@ -219,5 +220,36 @@ public class EventosTest extends JerseyTest {
 	@Test
 	public void testDeleteInvalidId() throws IOException {
 		assertBadRequestStatus(target("eventos/100").request().delete());
+	}
+	
+	
+	@Test
+	public void testBuscar() throws IOException{
+		final Form form = new Form();
+		form.param("titulo", "Evento de prueba");
+		form.param("usuario", "2");
+		form.param("inicio", "02/05/2015");
+		form.param("fin", "10/05/2015");
+		form.param("maxAsistentes", "10");
+		form.param("localidad", "Madrid");
+		form.param("descripcion", "descripcion corta4");
+		form.param("descripcionDetallada", "descripcion larga4");
+		form.param("categoria", "Peliculas");
+		form.param("local", "Local 4");
+		
+		final Response response = target("eventos")
+			.request(MediaType.APPLICATION_JSON_TYPE)
+			.post(Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE));
+		assertOkStatus(response);
+		
+		final Response response2 = target("eventos/Evento").request().get();
+		assertOkStatus(response2);
+		
+		final List<Evento> evento = response2.readEntity(new GenericType<List<Evento>>(){});
+		assertEquals(3, evento.size());
+		
+		assertEquals("Evento de prueba", evento.get(0).getTitulo());
+		assertEquals("Evento numero 1", evento.get(1).getTitulo());
+		assertEquals("Evento numero 2", evento.get(2).getTitulo());
 	}
 }

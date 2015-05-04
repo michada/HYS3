@@ -31,9 +31,21 @@ public class EventosResource {
 	@GET
 	public Response listOrdenado() {
 		try {
-			return Response.ok(this.dao.list(), MediaType.APPLICATION_JSON).build();
+			return Response.ok(this.dao.ordenar(), MediaType.APPLICATION_JSON).build();
 		} catch (DAOException e) {
 			LOG.log(Level.SEVERE, "Error listando eventos", e);
+			return Response.serverError().entity(e.getMessage()).build();
+		}
+	}
+	
+	@GET
+	@Path("/{cadena}")
+	public Response buscar(
+			@PathParam("cadena") String cadena){
+		try {
+			return Response.ok(this.dao.buscar(cadena), MediaType.APPLICATION_JSON).build();
+		} catch (DAOException e) {
+			LOG.log(Level.SEVERE, "Error buscando eventos", e);
 			return Response.serverError().entity(e.getMessage()).build();
 		}
 	}
