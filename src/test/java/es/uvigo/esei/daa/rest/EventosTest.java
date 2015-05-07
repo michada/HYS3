@@ -94,7 +94,7 @@ public class EventosTest extends JerseyTest {
 		assertEquals("03/05/2015", evento.getinicio());
 		assertEquals("09/05/2015", evento.getfin());
 		assertEquals("Pontevedra", evento.getLocalidad());
-		assertEquals("descripcion corta1", evento.getDescripcion);
+		assertEquals("descripcion corta1", evento.getDescripcion());
 		assertEquals("descripcion larga1", evento.getDescripcionDetallada());
 		assertEquals("Libros", evento.getCategoria());
 		assertEquals("Local 1", evento.getLocal());
@@ -131,7 +131,7 @@ public class EventosTest extends JerseyTest {
 		assertEquals("02/05/2015", evento.getinicio());
 		assertEquals("10/05/2015", evento.getfin());
 		assertEquals("Madrid", evento.getLocalidad());
-		assertEquals("descripcion corta4", evento.getDescripcion);
+		assertEquals("descripcion corta4", evento.getDescripcion());
 		assertEquals("descripcion larga4", evento.getDescripcionDetallada());
 		assertEquals("Peliculas", evento.getCategoria());
 		assertEquals("Local 4", evento.getLocal());
@@ -183,7 +183,7 @@ public class EventosTest extends JerseyTest {
 		assertEquals("02/05/2015", evento.getinicio());
 		assertEquals("10/05/2015", evento.getfin());
 		assertEquals("Madrid", evento.getLocalidad());
-		assertEquals("descripcion corta modificada4", evento.getDescripcion);
+		assertEquals("descripcion corta modificada4", evento.getDescripcion());
 		assertEquals("descripcion larga modificada", evento.getDescripcionDetallada());
 		assertEquals("Series", evento.getCategoria());
 		assertEquals("Local 5", evento.getLocal());

@@ -30,7 +30,12 @@ public class EventosDAO extends DAO {
 								result.getInt("usuario"),
 								result.getInt("maxAsistentes"),
 								result.getString("inicio"),
-								result.getString("fin"));
+								result.getString("fin"),
+								result.getString("localidad"),
+								result.getString("descripcion"),
+								result.getString("descripcionDetallada"),
+								result.getString("categoria"),
+								result.getString("local"));
 					} else {
 						throw new IllegalArgumentException("Invalid idEvento");
 					}
@@ -55,7 +60,12 @@ public class EventosDAO extends DAO {
 										.getInt("usuario"), result
 										.getInt("maxAsistentes"), result
 										.getString("inicio"), result
-										.getString("fin")));
+										.getString("fin"), result
+										.getString("localidad"), result
+										.getString("descripcion"), result
+										.getString("descripcionDetallada"),
+								result.getString("categoria"), result
+										.getString("local")));
 					}
 
 					return eventos;
@@ -63,6 +73,56 @@ public class EventosDAO extends DAO {
 			}
 		} catch (SQLException e) {
 			LOG.log(Level.SEVERE, "Error listando eventos", e);
+			throw new DAOException(e);
+		}
+	}
+
+	public Evento add(String titulo, int usuario, int maxAsistentes,
+			String inicio, String fin, String localidad, String descripcion,
+			String descripcionDetallada, String categoria, String local)
+			throws DAOException, IllegalArgumentException {
+		if (titulo == null || inicio == null || fin == null || usuario <= 0) {
+			throw new IllegalArgumentException(
+					"titulo, usuario, inicio y fin no pueden ser nulos y maxAsistentes debe ser mayor que 0");
+		}
+		try (final Connection conn = this.getConnection()) {
+			final String query = "INSERT INTO Eventos VALUES(null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+			try (PreparedStatement statement = conn.prepareStatement(query,
+					Statement.RETURN_GENERATED_KEYS)) {
+				statement.setString(1, titulo);
+				statement.setInt(2, usuario);
+				statement.setInt(3, maxAsistentes);
+				statement.setString(4, inicio);
+				statement.setString(5, fin);
+				statement.setString(6, localidad);
+				statement.setString(7, descripcion);
+				statement.setString(8, descripcionDetallada);
+				statement.setString(9, categoria);
+				statement.setString(10, local);
+				
+
+				if (statement.executeUpdate() == 1) {
+					try (ResultSet resultKeys = statement.getGeneratedKeys()) {
+						if (resultKeys.next()) {
+							return new Evento(resultKeys.getInt(1), titulo,
+									usuario, maxAsistentes, inicio, fin,
+									localidad, descripcion,
+									descripcionDetallada, categoria, local);
+						} else {
+							LOG.log(Level.SEVERE,
+									"Error retrieving inserted id");
+							throw new SQLException(
+									"Error retrieving inserted id");
+						}
+					}
+				} else {
+					LOG.log(Level.SEVERE, "Error inserting value");
+					throw new SQLException("Error inserting value");
+				}
+			}
+		} catch (SQLException e) {
+			LOG.log(Level.SEVERE, "Error añadiendo un evento", e);
 			throw new DAOException(e);
 		}
 	}
@@ -84,80 +144,6 @@ public class EventosDAO extends DAO {
 		}
 	}
 
-	public Evento modify(int idEvento, String titulo, int usuario,
-			int maxAsistentes, String inicio, String fin) throws DAOException,
-			IllegalArgumentException {
-		if (titulo == null || inicio == null || fin == null || maxAsistentes <= 0) {
-			throw new IllegalArgumentException(
-					"titulo, usuario, inicio y fin no pueden ser nulos y maxAsistentes debe ser mayor que 0");
-		}
-
-		try (final Connection conn = this.getConnection()) {
-			final String query = "UPDATE Eventos SET titulo=?, usuario=?, maxAsistentes=?, inicio=?, fin=? WHERE idEvento=?";
-
-			try (PreparedStatement statement = conn.prepareStatement(query)) {
-				statement.setString(1, titulo);
-				statement.setInt(2, usuario);
-				statement.setInt(3, maxAsistentes);
-				statement.setString(4, inicio);
-				statement.setString(5, fin);
-				statement.setInt(6, idEvento);
-
-				if (statement.executeUpdate() == 1) {
-					return new Evento(idEvento, titulo, usuario, maxAsistentes,
-							inicio, fin);
-				} else {
-					throw new IllegalArgumentException(
-							"titulo, usuario, inicio y fin no pueden ser nulos y maxAsistentes debe ser mayor que 0");
-				}
-			}
-		} catch (SQLException e) {
-			LOG.log(Level.SEVERE, "Error modificando el evento", e);
-			throw new DAOException();
-		}
-	}
-
-	public Evento add(String titulo, int usuario, int maxAsistentes,
-			String inicio, String fin) throws DAOException,
-			IllegalArgumentException {
-		if (titulo == null || inicio == null || fin == null || usuario <= 0) {
-			throw new IllegalArgumentException(
-					"titulo, usuario, inicio y fin no pueden ser nulos y maxAsistentes debe ser mayor que 0");
-		}
-		try (final Connection conn = this.getConnection()) {
-			final String query = "INSERT INTO Eventos VALUES(null, ?, ?, ?, ?, ?)";
-
-			try (PreparedStatement statement = conn.prepareStatement(query,
-					Statement.RETURN_GENERATED_KEYS)) {
-				statement.setString(1, titulo);
-				statement.setInt(2, usuario);
-				statement.setInt(3, maxAsistentes);
-				statement.setString(4, inicio);
-				statement.setString(5, fin);
-
-				if (statement.executeUpdate() == 1) {
-					try (ResultSet resultKeys = statement.getGeneratedKeys()) {
-						if (resultKeys.next()) {
-							return new Evento(resultKeys.getInt(1), titulo,
-									usuario, maxAsistentes, inicio, fin);
-						} else {
-							LOG.log(Level.SEVERE,
-									"Error retrieving inserted id");
-							throw new SQLException(
-									"Error retrieving inserted id");
-						}
-					}
-				} else {
-					LOG.log(Level.SEVERE, "Error inserting value");
-					throw new SQLException("Error inserting value");
-				}
-			}
-		} catch (SQLException e) {
-			LOG.log(Level.SEVERE, "Error añadiendo un evento", e);
-			throw new DAOException(e);
-		}
-	}
-
 	public List<Evento> filtrarLocalidad(String localidad) throws DAOException {
 		try (final Connection conn = this.getConnection()) {
 			try (Statement statement = conn.createStatement()) {
@@ -171,7 +157,12 @@ public class EventosDAO extends DAO {
 										.getInt("usuario"), result
 										.getInt("maxAsistentes"), result
 										.getString("inicio"), result
-										.getString("fin")));
+										.getString("fin"), result
+										.getString("localidad"), result
+										.getString("descripcion"), result
+										.getString("descripcionDetallada"),
+								result.getString("categoria"), result
+										.getString("local")));
 					}
 
 					return eventos;
@@ -182,7 +173,7 @@ public class EventosDAO extends DAO {
 			throw new DAOException(e);
 		}
 	}
-	
+
 	public List<Evento> filtrarCategoria(String categoria) throws DAOException {
 		try (final Connection conn = this.getConnection()) {
 			try (Statement statement = conn.createStatement()) {
@@ -196,7 +187,12 @@ public class EventosDAO extends DAO {
 										.getInt("usuario"), result
 										.getInt("maxAsistentes"), result
 										.getString("inicio"), result
-										.getString("fin")));
+										.getString("fin"), result
+										.getString("localidad"), result
+										.getString("descripcion"), result
+										.getString("descripcionDetallada"),
+								result.getString("categoria"), result
+										.getString("local")));
 					}
 
 					return eventos;
@@ -207,7 +203,7 @@ public class EventosDAO extends DAO {
 			throw new DAOException(e);
 		}
 	}
-	
+
 	public List<Evento> buscar(String cadena) throws DAOException {
 		try (final Connection conn = this.getConnection()) {
 			try (Statement statement = conn.createStatement()) {
@@ -221,7 +217,12 @@ public class EventosDAO extends DAO {
 										.getInt("usuario"), result
 										.getInt("maxAsistentes"), result
 										.getString("inicio"), result
-										.getString("fin")));
+										.getString("fin"), result
+										.getString("localidad"), result
+										.getString("descripcion"), result
+										.getString("descripcionDetallada"),
+								result.getString("categoria"), result
+										.getString("local")));
 					}
 
 					return eventos;
