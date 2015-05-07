@@ -75,7 +75,7 @@ public class EventosDAOTest {
 
 	@Test
 	public void testFiltrarLocalidad() throws DAOException {
-		this.dao.add("Evento añadido", 2, 5, "05/05/2015", "15/05/2015",
+		this.dao.add("Evento aï¿½adido", "usuario", 5, "05/05/2015", "15/05/2015",
 				"Pontevedra", "descripcion corta5", "descripcion larga5",
 				"Libros", "Local 5");
 
@@ -93,11 +93,11 @@ public class EventosDAOTest {
 	
 	@Test
 	public void testFiltrarCategoria() throws DAOException {
-		this.dao.add("Evento añadido", 2, 5, "05/05/2015", "15/05/2015",
+		this.dao.add("Evento aï¿½adido", "usuario", 5, "05/05/2015", "15/05/2015",
 				"Pontevedra", "descripcion corta5", "descripcion larga5",
 				"Libros", "Local 5");
 
-		assertEquals(4, this.dao.list().size());// Comprueba si se ha añadido
+		assertEquals(4, this.dao.list().size());// Comprueba si se ha aï¿½adido
 												// correctamente
 
 		List<Evento> even = this.dao.filtrarLocalidad("Libros");
@@ -119,7 +119,7 @@ public class EventosDAOTest {
 		assertEquals("Evento numero 2", even.get(1).getTitulo());
 		assertEquals("Evento numero 3", even.get(2).getTitulo());
 
-		this.dao.add("Prueba", 2, 1, "05/05/2015", "15/05/2015", "Barcelona",
+		this.dao.add("Prueba", "usuario", 1, "05/05/2015", "15/05/2015", "Barcelona",
 				"descripcion corta5", "descripcion larga5", "Libros", "Local 5");
 		
 		List<Evento> even2 = this.dao.buscar("Pru");

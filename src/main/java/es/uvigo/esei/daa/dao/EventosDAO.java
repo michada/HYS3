@@ -27,7 +27,7 @@ public class EventosDAO extends DAO {
 					if (result.next()) {
 						return new Evento(result.getInt("idEvento"),
 								result.getString("titulo"),
-								result.getInt("usuario"),
+								result.getString("usuario"),
 								result.getInt("maxAsistentes"),
 								result.getString("inicio"),
 								result.getString("fin"),
@@ -57,7 +57,7 @@ public class EventosDAO extends DAO {
 					while (result.next()) {
 						eventos.add(new Evento(result.getInt("idEvento"),
 								result.getString("titulo"), result
-										.getInt("usuario"), result
+										.getString("usuario"), result
 										.getInt("maxAsistentes"), result
 										.getString("inicio"), result
 										.getString("fin"), result
@@ -77,11 +77,11 @@ public class EventosDAO extends DAO {
 		}
 	}
 
-	public Evento add(String titulo, int usuario, int maxAsistentes,
+	public Evento add(String titulo, String usuario, int maxAsistentes,
 			String inicio, String fin, String localidad, String descripcion,
 			String descripcionDetallada, String categoria, String local)
 			throws DAOException, IllegalArgumentException {
-		if (titulo == null || inicio == null || fin == null || usuario <= 0) {
+		if (titulo == null || inicio == null || fin == null || usuario == null) {
 			throw new IllegalArgumentException(
 					"titulo, usuario, inicio y fin no pueden ser nulos y maxAsistentes debe ser mayor que 0");
 		}
@@ -91,7 +91,7 @@ public class EventosDAO extends DAO {
 			try (PreparedStatement statement = conn.prepareStatement(query,
 					Statement.RETURN_GENERATED_KEYS)) {
 				statement.setString(1, titulo);
-				statement.setInt(2, usuario);
+				statement.setString(2, usuario);
 				statement.setInt(3, maxAsistentes);
 				statement.setString(4, inicio);
 				statement.setString(5, fin);
@@ -122,7 +122,7 @@ public class EventosDAO extends DAO {
 				}
 			}
 		} catch (SQLException e) {
-			LOG.log(Level.SEVERE, "Error añadiendo un evento", e);
+			LOG.log(Level.SEVERE, "Error aï¿½adiendo un evento", e);
 			throw new DAOException(e);
 		}
 	}
@@ -156,7 +156,7 @@ public class EventosDAO extends DAO {
 					while (result.next()) {
 						eventos.add(new Evento(result.getInt("idEvento"),
 								result.getString("titulo"), result
-										.getInt("usuario"), result
+										.getString("usuario"), result
 										.getInt("maxAsistentes"), result
 										.getString("inicio"), result
 										.getString("fin"), result
@@ -188,7 +188,7 @@ public class EventosDAO extends DAO {
 					while (result.next()) {
 						eventos.add(new Evento(result.getInt("idEvento"),
 								result.getString("titulo"), result
-										.getInt("usuario"), result
+										.getString("usuario"), result
 										.getInt("maxAsistentes"), result
 										.getString("inicio"), result
 										.getString("fin"), result
@@ -220,7 +220,7 @@ public class EventosDAO extends DAO {
 					while (result.next()) {
 						eventos.add(new Evento(result.getInt("idEvento"),
 								result.getString("titulo"), result
-										.getInt("usuario"), result
+										.getString("usuario"), result
 										.getInt("maxAsistentes"), result
 										.getString("inicio"), result
 										.getString("fin"), result

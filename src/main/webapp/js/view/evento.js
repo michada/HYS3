@@ -1,8 +1,3 @@
-var imagenEvento = 'imagenEvento'
-var descEvento = 'descEvento'
-var tituloEvento = 'tituloEvento'
-var propEvento = 'propEvento'
-
 function anadirEvento(evento,parent) {
 	parent.append(
 			'<div class="evento">\
@@ -16,14 +11,14 @@ function anadirEvento(evento,parent) {
 	            </ul>\
 	        </div>'
 		);
-}
+};
 	
 function listarEventos(parent) {
-	$.getScript('eventoDAO.js', function() {
+	$.getScript('js/dao/evento.js', function() { 
 		listEventos(function(eventos) {
-			$.each(eventos, function(key, evento) {				
-				anadirEvento(evento,parent);				
+			$.each(eventos, function(key, evento) {
+				anadirEvento(evento,parent);
 			});
 		});
 	});
-}
+};
