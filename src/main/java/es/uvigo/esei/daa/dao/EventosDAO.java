@@ -158,7 +158,57 @@ public class EventosDAO extends DAO {
 		}
 	}
 
-	public List<Evento> ordenar() throws DAOException {
+	public List<Evento> filtrarLocalidad(String localidad) throws DAOException {
+		try (final Connection conn = this.getConnection()) {
+			try (Statement statement = conn.createStatement()) {
+				try (ResultSet result = statement
+						.executeQuery("SELECT * FROM Eventos ORDER BY maxAsistentes DESC")) {
+					final List<Evento> eventos = new LinkedList<>();
+
+					while (result.next()) {
+						eventos.add(new Evento(result.getInt("idEvento"),
+								result.getString("titulo"), result
+										.getInt("usuario"), result
+										.getInt("maxAsistentes"), result
+										.getString("inicio"), result
+										.getString("fin")));
+					}
+
+					return eventos;
+				}
+			}
+		} catch (SQLException e) {
+			LOG.log(Level.SEVERE, "Error ordenando eventos", e);
+			throw new DAOException(e);
+		}
+	}
+	
+	public List<Evento> filtrarCategoria(String categoria) throws DAOException {
+		try (final Connection conn = this.getConnection()) {
+			try (Statement statement = conn.createStatement()) {
+				try (ResultSet result = statement
+						.executeQuery("SELECT * FROM Eventos ORDER BY maxAsistentes DESC")) {
+					final List<Evento> eventos = new LinkedList<>();
+
+					while (result.next()) {
+						eventos.add(new Evento(result.getInt("idEvento"),
+								result.getString("titulo"), result
+										.getInt("usuario"), result
+										.getInt("maxAsistentes"), result
+										.getString("inicio"), result
+										.getString("fin")));
+					}
+
+					return eventos;
+				}
+			}
+		} catch (SQLException e) {
+			LOG.log(Level.SEVERE, "Error ordenando eventos", e);
+			throw new DAOException(e);
+		}
+	}
+	
+	public List<Evento> buscar(String cadena) throws DAOException {
 		try (final Connection conn = this.getConnection()) {
 			try (Statement statement = conn.createStatement()) {
 				try (ResultSet result = statement

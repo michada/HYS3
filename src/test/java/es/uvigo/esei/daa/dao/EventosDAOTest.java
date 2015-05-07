@@ -259,15 +259,20 @@ public class EventosDAOTest {
 	}
 
 	@Test
+<<<<<<< HEAD
+	public void testFiltrarLocalidad() throws DAOException {
+		this.dao.add("Evento añadido", 2, 5, "05/05/2015", "15/05/2015",
+=======
 	public void testOrdenarEventos() throws DAOException {
 		this.dao.add("Evento aï¿½adido", 2, 5, "05/05/2015", "15/05/2015",
+>>>>>>> branch 'Version-0.0.1' of https://github.com/michada/HYS3
 				"Pontevedra", "descripcion corta5", "descripcion larga5",
 				"Libros", "Local 5");
 
 		assertEquals(4, this.dao.list().size());// Comprueba si se ha aï¿½adido
 												// correctamente
 
-		List<Evento> even = this.dao.ordenar("Pontevedra");
+		List<Evento> even = this.dao.filtrarLocalidad("Pontevedra");
 		
 		assertEquals(3, even.size());
 
@@ -275,6 +280,25 @@ public class EventosDAOTest {
 		assertEquals(1, even.get(1).getIdEvento());
 		assertEquals(2, even.get(2).getIdEvento());
 	}
+	
+	
+	@Test
+	public void testFiltrarCategoria() throws DAOException {
+		this.dao.add("Evento añadido", 2, 5, "05/05/2015", "15/05/2015",
+				"Pontevedra", "descripcion corta5", "descripcion larga5",
+				"Libros", "Local 5");
+
+		assertEquals(4, this.dao.list().size());// Comprueba si se ha añadido
+												// correctamente
+
+		List<Evento> even = this.dao.filtrarLocalidad("Libros");
+		
+		assertEquals(2, even.size());
+
+		assertEquals(4, even.get(0).getIdEvento());
+		assertEquals(1, even.get(1).getIdEvento());
+	}
+	
 
 	@Test
 	public void buscarEventos() throws DAOException {

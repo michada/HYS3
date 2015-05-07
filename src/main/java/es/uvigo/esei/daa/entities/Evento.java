@@ -8,12 +8,18 @@ public class Evento {
 	private int maxAsistentes;
 	private String inicio;
 	private String fin;
+	private String localidad;
+	private String descripcion;
+	private String descripcionDetallada;
+	private String categoria;
+	private String local;
 	
 	public Evento(){
 		
 	}
 	
-	public Evento(int idEvento,String titulo, int usuario, int maxAsistentes, String inicio, String fin){
+	public Evento(int idEvento,String titulo, int usuario, int maxAsistentes, String inicio, String fin, String localidad
+			, String descripcion, String descripcionDetallada, String categoria, String local){
 		
 		this.idEvento = idEvento;
 		this.titulo = titulo;
@@ -21,6 +27,11 @@ public class Evento {
 		this.maxAsistentes = maxAsistentes;
 		this.inicio = inicio;
 		this.fin = fin;
+		this.setLocalidad(localidad);
+		this.setDescripcion(descripcion);
+		this.setDescripcionDetallada(descripcionDetallada);
+		this.setCategoria(categoria);
+		this.setLocal(local);
 		
 	}
 
@@ -60,8 +71,44 @@ public class Evento {
 	public void setfin(String fin) {
 		this.fin = fin;
 	}
-	
-	
-	
-	
+
+	public String getLocalidad() {
+		return localidad;
+	}
+
+	public void setLocalidad(String localidad) {
+		this.localidad = localidad;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public String getDescripcionDetallada() {
+		return descripcionDetallada;
+	}
+
+	public void setDescripcionDetallada(String descripcionDetallada) {
+		this.descripcionDetallada = descripcionDetallada;
+	}
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+
+	public String getLocal() {
+		return local;
+	}
+
+	public void setLocal(String local) {
+		this.local = local;
+	}	
 }
