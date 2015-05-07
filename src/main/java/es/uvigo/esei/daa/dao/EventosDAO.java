@@ -146,11 +146,13 @@ public class EventosDAO extends DAO {
 
 	public List<Evento> filtrarLocalidad(String localidad) throws DAOException {
 		try (final Connection conn = this.getConnection()) {
-			try (Statement statement = conn.createStatement()) {
-				try (ResultSet result = statement
-						.executeQuery("SELECT * FROM Eventos ORDER BY localidad DESC")) {
+			final String query = "SELECT * FROM Eventos WHERE localidad=? ORDER BY maxAsistentes DESC";
+			
+			try (PreparedStatement statement = conn.prepareStatement(query)) {
+				statement.setString(1, localidad);
+				
 					final List<Evento> eventos = new LinkedList<>();
-
+					try (ResultSet result = statement.executeQuery()) {
 					while (result.next()) {
 						eventos.add(new Evento(result.getInt("idEvento"),
 								result.getString("titulo"), result
@@ -176,11 +178,13 @@ public class EventosDAO extends DAO {
 
 	public List<Evento> filtrarCategoria(String categoria) throws DAOException {
 		try (final Connection conn = this.getConnection()) {
-			try (Statement statement = conn.createStatement()) {
-				try (ResultSet result = statement
-						.executeQuery("SELECT * FROM Eventos ORDER BY categoria DESC")) {
+			final String query = "SELECT * FROM Eventos WHERE categoria=? ORDER BY maxAsistentes DESC";
+			
+			try (PreparedStatement statement = conn.prepareStatement(query)) {
+				statement.setString(1, categoria);
+				
 					final List<Evento> eventos = new LinkedList<>();
-
+					try (ResultSet result = statement.executeQuery()) {
 					while (result.next()) {
 						eventos.add(new Evento(result.getInt("idEvento"),
 								result.getString("titulo"), result
@@ -202,16 +206,17 @@ public class EventosDAO extends DAO {
 			LOG.log(Level.SEVERE, "Error ordenando eventos", e);
 			throw new DAOException(e);
 		}
-		
 	}
 
 	public List<Evento> buscar(String cadena) throws DAOException {
 		try (final Connection conn = this.getConnection()) {
-			try (Statement statement = conn.createStatement()) {
-				try (ResultSet result = statement
-						.executeQuery("SELECT * FROM Eventos ORDER BY maxAsistentes DESC")) {
+			final String query = "SELECT * FROM Eventos WHERE titulo=? ORDER BY maxAsistentes DESC";
+			
+			try (PreparedStatement statement = conn.prepareStatement(query)) {
+				statement.setString(1, cadena);
+				
 					final List<Evento> eventos = new LinkedList<>();
-
+					try (ResultSet result = statement.executeQuery()) {
 					while (result.next()) {
 						eventos.add(new Evento(result.getInt("idEvento"),
 								result.getString("titulo"), result
