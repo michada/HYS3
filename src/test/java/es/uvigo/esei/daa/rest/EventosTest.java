@@ -93,11 +93,11 @@ public class EventosTest extends JerseyTest {
 		assertEquals(3, evento.getMaxAsistentes());
 		assertEquals("03/05/2015", evento.getinicio());
 		assertEquals("09/05/2015", evento.getfin());
-		assertEquals("Pontevedra", event.getLocalidad());
-		assertEquals("descripcion corta1", event.getDescripcion);
-		assertEquals("descripcion larga1", event.getDescripcionDetallada());
-		assertEquals("Libros", event.getCategoria());
-		assertEquals("Local 1", event.getLocal());
+		assertEquals("Pontevedra", evento.getLocalidad());
+		assertEquals("descripcion corta1", evento.getDescripcion);
+		assertEquals("descripcion larga1", evento.getDescripcionDetallada());
+		assertEquals("Libros", evento.getCategoria());
+		assertEquals("Local 1", evento.getLocal());
 	}
 
 	@Test
@@ -108,7 +108,7 @@ public class EventosTest extends JerseyTest {
 	@Test
 	public void testAdd() throws IOException {
 		final Form form = new Form();
-		form.param("titulo", "Evento añadido");
+		form.param("titulo", "Evento aï¿½adido");
 		form.param("usuario", "2");
 		form.param("inicio", "02/05/2015");
 		form.param("fin", "10/05/2015");
@@ -126,7 +126,7 @@ public class EventosTest extends JerseyTest {
 		
 		final Evento evento = response.readEntity(Evento.class);
 		assertEquals(4, evento.getIdEvento());
-		assertEquals("Evento añadido", evento.getTitulo());
+		assertEquals("Evento aï¿½adido", evento.getTitulo());
 		assertEquals(2, evento.getUsuario());
 		assertEquals("02/05/2015", evento.getinicio());
 		assertEquals("10/05/2015", evento.getfin());

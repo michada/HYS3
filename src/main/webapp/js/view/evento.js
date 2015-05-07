@@ -9,7 +9,7 @@ function anadirEvento(evento,parent) {
 	        	<ul>\
 	                <li class="imagenEvento"><div><a href="#"><img src="media/img/poe.jpg" /></a></div></li>\
 	                <li class="descEvento"><div>\
-	                    <div class="tituloEvento"><p>'+ evento +'</p></div>\
+	                    <div class="tituloEvento"><p>'+ evento.titulo +'</p></div>\
 	                    <div class="propEvento"><p>Estas son las propiedades del evento</p></div>\
 	                </div>\
 	                <li>\
@@ -19,9 +19,9 @@ function anadirEvento(evento,parent) {
 }
 	
 function listarEventos(parent) {
-	$.getScript('js/dao/evento.js', function() {
+	$.getScript('eventoDAO.js', function() {
 		listEventos(function(eventos) {
-			$.each(eventos, function(key, evento) {
+			$.each(eventos, function(key, evento) {				
 				anadirEvento(evento,parent);				
 			});
 		});

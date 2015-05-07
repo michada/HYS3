@@ -44,7 +44,7 @@ public class EventosDAOTest {
 		assertEquals("03/05/2015", event.getinicio());
 		assertEquals("09/05/2015", event.getfin());
 		assertEquals("Pontevedra", event.getLocalidad());
-		assertEquals("descripcion corta2", event.getDescripcion);
+		assertEquals("descripcion corta2", event.getDescripcion());
 		assertEquals("descripcion larga2", event.getDescripcionDetallada());
 		assertEquals("Peliculas", event.getCategoria());
 		assertEquals("Local 2", event.getLocal());
@@ -172,11 +172,11 @@ public class EventosDAOTest {
 
 	@Test
 	public void testAdd() throws DAOException {
-		final Evento event = this.dao.add("Evento añadido", 2, 1, "05/05/2015",
+		final Evento event = this.dao.add("Evento aï¿½adido", 2, 1, "05/05/2015",
 				"15/05/2015", "Barcelona", "descripcion corta5",
 				"descripcion larga5", "Libros", "Local 5");
 
-		assertEquals("Evento añadido", event.getTitulo());
+		assertEquals("Evento aï¿½adido", event.getTitulo());
 		assertEquals(2, event.getUsuario());
 		assertEquals("05/05/2015", event.getinicio());
 		assertEquals("15/05/2015", event.getfin());
@@ -189,7 +189,7 @@ public class EventosDAOTest {
 		final Evento eventGet = this.dao.get(event.getIdEvento());
 
 		assertEquals(event.getIdEvento(), eventGet.getIdEvento());
-		assertEquals("Evento añadido", eventGet.getTitulo());
+		assertEquals("Evento aï¿½adido", eventGet.getTitulo());
 		assertEquals(2, eventGet.getUsuario());
 		assertEquals("05/05/2015", eventGet.getinicio());
 		assertEquals("15/05/2015", eventGet.getfin());
@@ -209,62 +209,62 @@ public class EventosDAOTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testAddNullAsistentes() throws DAOException {
-		this.dao.add("Evento añadido", 2, 0, "05/05/2015", "15/05/2015",
+		this.dao.add("Evento aï¿½adido", 2, 0, "05/05/2015", "15/05/2015",
 				"Barcelona", "descripcion corta5", "descripcion larga5",
 				"Libros", "Local 5");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testAddNullFechaInicio() throws DAOException {
-		this.dao.add("Evento añadido", 2, 1, null, "15/05/2015", "Barcelona",
+		this.dao.add("Evento aï¿½adido", 2, 1, null, "15/05/2015", "Barcelona",
 				"descripcion corta5", "descripcion larga5", "Libros", "Local 5");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testAddNullFechaFin() throws DAOException {
-		this.dao.add("Evento añadido", 2, 1, "05/05/2015", null, "Barcelona",
+		this.dao.add("Evento aï¿½adido", 2, 1, "05/05/2015", null, "Barcelona",
 				"descripcion corta5", "descripcion larga5", "Libros", "Local 5");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testAddNullLocalidad() throws DAOException {
-		this.dao.add("Evento añadido", 2, 1, "05/05/2015", "15/05/2015", null,
+		this.dao.add("Evento aï¿½adido", 2, 1, "05/05/2015", "15/05/2015", null,
 				"descripcion corta5", "descripcion larga5", "Libros", "Local 5");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testAddNullDescripcionCorta() throws DAOException {
-		this.dao.add("Evento añadido", 2, 1, "05/05/2015", "15/05/2015",
+		this.dao.add("Evento aï¿½adido", 2, 1, "05/05/2015", "15/05/2015",
 				"Barcelona", null, "descripcion larga5", "Libros", "Local 5");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testAddNullDescripcionLaarga() throws DAOException {
-		this.dao.add("Evento añadido", 2, 1, "05/05/2015", "15/05/2015",
+		this.dao.add("Evento aï¿½adido", 2, 1, "05/05/2015", "15/05/2015",
 				"Barcelona", "descripcion corta5", null, "Libros", "Local 5");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testAddNullCategoria() throws DAOException {
-		this.dao.add("Evento añadido", 2, 1, "05/05/2015", "15/05/2015",
+		this.dao.add("Evento aï¿½adido", 2, 1, "05/05/2015", "15/05/2015",
 				"Barcelona", "descripcion corta5", "descripcion larga5", null,
 				"Local 5");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testAddNullLocal() throws DAOException {
-		this.dao.add("Evento añadido", 2, 1, "05/05/2015", "15/05/2015",
+		this.dao.add("Evento aï¿½adido", 2, 1, "05/05/2015", "15/05/2015",
 				"Barcelona", "descripcion corta5", "descripcion larga5",
 				"Libros", null);
 	}
 
 	@Test
 	public void testOrdenarEventos() throws DAOException {
-		this.dao.add("Evento añadido", 2, 5, "05/05/2015", "15/05/2015",
+		this.dao.add("Evento aï¿½adido", 2, 5, "05/05/2015", "15/05/2015",
 				"Pontevedra", "descripcion corta5", "descripcion larga5",
 				"Libros", "Local 5");
 
-		assertEquals(4, this.dao.list().size());// Comprueba si se ha añadido
+		assertEquals(4, this.dao.list().size());// Comprueba si se ha aï¿½adido
 												// correctamente
 
 		List<Evento> even = this.dao.ordenar("Pontevedra");
