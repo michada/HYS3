@@ -148,7 +148,7 @@ public class EventosDAO extends DAO {
 		try (final Connection conn = this.getConnection()) {
 			try (Statement statement = conn.createStatement()) {
 				try (ResultSet result = statement
-						.executeQuery("SELECT * FROM Eventos ORDER BY maxAsistentes DESC")) {
+						.executeQuery("SELECT * FROM Eventos ORDER BY localidad DESC")) {
 					final List<Evento> eventos = new LinkedList<>();
 
 					while (result.next()) {
@@ -178,7 +178,7 @@ public class EventosDAO extends DAO {
 		try (final Connection conn = this.getConnection()) {
 			try (Statement statement = conn.createStatement()) {
 				try (ResultSet result = statement
-						.executeQuery("SELECT * FROM Eventos ORDER BY maxAsistentes DESC")) {
+						.executeQuery("SELECT * FROM Eventos ORDER BY categoria DESC")) {
 					final List<Evento> eventos = new LinkedList<>();
 
 					while (result.next()) {
@@ -202,6 +202,7 @@ public class EventosDAO extends DAO {
 			LOG.log(Level.SEVERE, "Error ordenando eventos", e);
 			throw new DAOException(e);
 		}
+		
 	}
 
 	public List<Evento> buscar(String cadena) throws DAOException {
