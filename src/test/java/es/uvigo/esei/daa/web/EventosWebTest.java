@@ -24,34 +24,35 @@ public class EventosWebTest {
 	private static final int DEFAULT_WAIT_TIME = 1;
 	private WebDriver driver;
 	private StringBuffer verificationErrors = new StringBuffer();
-	
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		TestUtils.createFakeContext();
 		TestUtils.clearTestDatabase();
 	}
-	
+
 	@Before
 	public void setUp() throws Exception {
 		TestUtils.initTestDatabase();
-		
-		final String baseUrl = "http://localhost:9080/DAAExample/";/////////////
-		
+
+		final String baseUrl = "http://localhost:9080/DAAExample/";// ///////////
+
 		driver = new FirefoxDriver();
 		driver.get(baseUrl);
 		driver.manage().addCookie(new Cookie("token", "bXJqYXRvOm1yamF0bw=="));
-		
+
 		// Driver will wait DEFAULT_WAIT_TIME if it doesn't find and element.
-		driver.manage().timeouts().implicitlyWait(DEFAULT_WAIT_TIME, TimeUnit.SECONDS);
-		
+		driver.manage().timeouts()
+				.implicitlyWait(DEFAULT_WAIT_TIME, TimeUnit.SECONDS);
+
 		driver.get(baseUrl + "index.html");
 		driver.findElement(By.id("eventos-list"));
 	}
-	
+
 	@After
 	public void tearDown() throws Exception {
 		TestUtils.clearTestDatabase();
-		
+
 		driver.quit();
 		String verificationErrorString = verificationErrors.toString();
 		if (!"".equals(verificationErrorString)) {
@@ -60,73 +61,114 @@ public class EventosWebTest {
 	}
 
 	@Test
-	public void testListOrdenado() throws Exception {
-		verifyXpathCount("//tr", 3);
+	public void testListFiltradoProvincia() throws Exception {
+		verifyXpathCount("//tr[@localidad='" + "Pontevedra" + "']", 2);
 		WebElement element = driver.findElement(By.name("tituloEvento"));
-		assertEquals("Evento numero 3", element.getTagName());
-		// a ver si asi funciona algo
+		assertEquals("Evento numero 1", element.getTagName());
 	}
 
-//	@Test
-//	public void testAdd() throws Exception {
-//		final String name = "Hola";
-//		final String surname = "Mundo";
-//		
-//		driver.findElement(By.name("name")).clear();
-//		driver.findElement(By.name("name")).sendKeys(name);
-//		driver.findElement(By.name("surname")).clear();
-//		driver.findElement(By.name("surname")).sendKeys(surname);
-//		driver.findElement(By.id("btnSubmit")).click();
-//		driver.findElement(By.xpath("//td[text()='Hola']"));
-//		
-//		assertEquals(name, 
-//			driver.findElement(By.cssSelector("tr:last-child > td.name")).getText()
-//		);
-//		assertEquals(surname, 
-//			driver.findElement(By.cssSelector("tr:last-child > td.surname")).getText()
-//		);
-//	}
+	@Test
+	public void testListFiltradoCategoria() throws Exception {
+		verifyXpathCount("//tr[@categoria='" + "Libros" + "']", 1);
+		WebElement element = driver.findElement(By.name("categoriaEvento"));
+		assertEquals("Libros", element.getTagName());
+	}
 
-//	@Test
-//	public void testEdit() throws Exception {
-//		final String name = "Xián";
-//		final String surname = "Ximénez";
-//		
-//		final String trId = driver.findElement(By.xpath("//tr[last()]")).getAttribute("id");
-//		driver.findElement(By.xpath("//tr[@id='" + trId + "']//a[text()='Edit']")).click();
-//		driver.findElement(By.name("name")).clear();
-//		driver.findElement(By.name("name")).sendKeys(name);
-//		driver.findElement(By.name("surname")).clear();
-//		driver.findElement(By.name("surname")).sendKeys(surname);
-//		driver.findElement(By.id("btnSubmit")).click();
-//		waitForTextInElement(By.name("name"), "");
-//		waitForTextInElement(By.name("surname"), "");
-//		
-//		assertEquals(name, 
-//			driver.findElement(By.xpath("//tr[@id='" + trId + "']/td[@class='name']")).getText()
-//		);
-//		assertEquals(surname, 
-//			driver.findElement(By.xpath("//tr[@id='" + trId + "']/td[@class='surname']")).getText()
-//		);
-//	}
+	@Test
+	public void testGetEvento() throws Exception {
+		driver.findElement(
+				By.xpath("//tr[@localidad='" + "Pontevedra"
+						+ "']//a[text()='consultar']")).click();
+		verifyXpathCount("//tr[@eventos='" + "1" + "']", 1);
 
-//	@Test
-//	public void testDelete() throws Exception {
-//		final String trId = driver.findElement(By.xpath("//tr[last()]")).getAttribute("id");
-//		driver.findElement(By.xpath("(//a[contains(text(),'Delete')])[last()]")).click();
-//		driver.switchTo().alert().accept();
-//		waitUntilNotFindElement(By.id(trId));
-//	}
-//	
-//	private boolean waitUntilNotFindElement(By by) {
-//	    return new WebDriverWait(driver, DEFAULT_WAIT_TIME)
-//	    	.until(ExpectedConditions.invisibilityOfElementLocated(by));
-//	}
-//	
-//	private boolean waitForTextInElement(By by, String text) {
-//	    return new WebDriverWait(driver, DEFAULT_WAIT_TIME)
-//	    	.until(ExpectedConditions.textToBePresentInElementLocated(by, text));
-//	}
+		assertEquals("Evento numero 1", driver.findElement(
+				By.xpath("//tr[@eventos='" + "1" + "']/td[@class='titulo']"))
+				.getText());
+		assertEquals("Libros", driver.findElement(
+				By.xpath("//tr[@id='" + "1" + "']/td[@class='categoria']"))
+				.getText());
+		assertEquals(
+				"descripcion larga1",
+				driver.findElement(
+						By.xpath("//tr[@id='" + 1
+								+ "']/td[@class='descripcionDetallada']"))
+						.getText());
+	}
+	
+	@Test
+	public void testBuscar() throws Exception {
+		verifyXpathCount("//tr[@cadenaBusqueda='" + "Evento" + "']", 3);
+		verifyXpathCount("//tr[@cadenaBusqueda='" + "Evento numero 2" + "']", 1);
+		
+		WebElement element = driver.findElement(By.name("titulo"));
+		assertEquals("Evento numero 2", element.getTagName());
+	}
+
+	// @Test
+	// public void testAdd() throws Exception {
+	// final String name = "Hola";
+	// final String surname = "Mundo";
+	//
+	// driver.findElement(By.name("name")).clear();
+	// driver.findElement(By.name("name")).sendKeys(name);
+	// driver.findElement(By.name("surname")).clear();
+	// driver.findElement(By.name("surname")).sendKeys(surname);
+	// driver.findElement(By.id("btnSubmit")).click();
+	// driver.findElement(By.xpath("//td[text()='Hola']"));
+	//
+	// assertEquals(name,
+	// driver.findElement(By.cssSelector("tr:last-child > td.name")).getText()
+	// );
+	// assertEquals(surname,
+	// driver.findElement(By.cssSelector("tr:last-child > td.surname")).getText()
+	// );
+	// }
+
+	// @Test
+	// public void testEdit() throws Exception {
+	// final String name = "Xián";
+	// final String surname = "Ximénez";
+	//
+	// final String trId =
+	// driver.findElement(By.xpath("//tr[last()]")).getAttribute("id");
+	// driver.findElement(By.xpath("//tr[@id='" + trId +
+	// "']//a[text()='Edit']")).click();
+	// driver.findElement(By.name("name")).clear();
+	// driver.findElement(By.name("name")).sendKeys(name);
+	// driver.findElement(By.name("surname")).clear();
+	// driver.findElement(By.name("surname")).sendKeys(surname);
+	// driver.findElement(By.id("btnSubmit")).click();
+	// waitForTextInElement(By.name("name"), "");
+	// waitForTextInElement(By.name("surname"), "");
+	//
+	// assertEquals(name,
+	// driver.findElement(By.xpath("//tr[@id='" + trId +
+	// "']/td[@class='name']")).getText()
+	// );
+	// assertEquals(surname,
+	// driver.findElement(By.xpath("//tr[@id='" + trId +
+	// "']/td[@class='surname']")).getText()
+	// );
+	// }
+
+	// @Test
+	// public void testDelete() throws Exception {
+	// final String trId =
+	// driver.findElement(By.xpath("//tr[last()]")).getAttribute("id");
+	// driver.findElement(By.xpath("(//a[contains(text(),'Delete')])[last()]")).click();
+	// driver.switchTo().alert().accept();
+	// waitUntilNotFindElement(By.id(trId));
+	// }
+	//
+	// private boolean waitUntilNotFindElement(By by) {
+	// return new WebDriverWait(driver, DEFAULT_WAIT_TIME)
+	// .until(ExpectedConditions.invisibilityOfElementLocated(by));
+	// }
+	//
+	// private boolean waitForTextInElement(By by, String text) {
+	// return new WebDriverWait(driver, DEFAULT_WAIT_TIME)
+	// .until(ExpectedConditions.textToBePresentInElementLocated(by, text));
+	// }
 
 	private void verifyXpathCount(String xpath, int count) {
 		try {
