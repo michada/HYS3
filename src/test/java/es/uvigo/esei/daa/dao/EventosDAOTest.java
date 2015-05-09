@@ -61,19 +61,6 @@ public class EventosDAOTest {
 	}
 
 	@Test
-	public void testDelete() throws DAOException {
-		this.dao.delete(2);
-
-		assertEquals(2, this.dao.list().size());
-	}
-
-	@Test(expected = IllegalArgumentException.class)
-	public void testDeleteInvalidId() throws DAOException {
-		this.dao.delete(100);
-	}
-
-
-	@Test
 	public void testFiltrarLocalidad() throws DAOException {
 		this.dao.add("Evento a�adido", "usuario", 5, "05/05/2015", "15/05/2015",
 				"Pontevedra", "descripcion corta5", "descripcion larga5",

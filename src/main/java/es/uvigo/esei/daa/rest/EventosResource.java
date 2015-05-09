@@ -3,7 +3,6 @@ package es.uvigo.esei.daa.rest;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -86,25 +85,6 @@ public class EventosResource {
 				.entity(iae.getMessage()).build();
 		} catch (DAOException e) {
 			LOG.log(Level.SEVERE, "Error cogiendo un evento", e);
-			return Response.serverError().entity(e.getMessage()).build();
-		}
-	}
-
-	@DELETE
-	@Path("/{idEvento}")
-	public Response delete(
-		@PathParam("idEvento") int idEvento
-	) {
-		try {
-			this.dao.delete(idEvento);
-			
-			return Response.ok(idEvento).build();
-		} catch (IllegalArgumentException iae) {
-			iae.printStackTrace();
-			return Response.status(Response.Status.BAD_REQUEST)
-				.entity(iae.getMessage()).build();
-		} catch (DAOException e) {
-			LOG.log(Level.SEVERE, "Error borrando un evento", e);
 			return Response.serverError().entity(e.getMessage()).build();
 		}
 	}

@@ -154,74 +154,65 @@ public class EventosTest extends JerseyTest {
 			.post(Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE));
 		
 		assertBadRequestStatus(response);
-	}
-
+	}	
+	
 	@Test
-	public void testModify() throws IOException {
+	public void testFiltrarLocalidad() throws IOException{
 		final Form form = new Form();
-		form.param("idEvento", "1");
-		form.param("titulo", "Evento modificado");
-		form.param("usuario", "1");
-		form.param("maxAsistentes", "2");
+		form.param("titulo", "Evento de prueba");
+		form.param("usuario", "2");
 		form.param("inicio", "02/05/2015");
 		form.param("fin", "10/05/2015");
+		form.param("maxAsistentes", "11");
 		form.param("localidad", "Madrid");
-		form.param("descripcion", "descripcion corta modificada");
-		form.param("descripcionDetallada", "descripcion larga modificada");
-		form.param("categoria", "Series");
-		form.param("local", "Local 5");
+		form.param("descripcion", "descripcion corta4");
+		form.param("descripcionDetallada", "descripcion larga4");
+		form.param("categoria", "Peliculas");
+		form.param("local", "Local 4");
 		
-		final Response response = target("eventos/1")
+		final Response response = target("eventos")
 			.request(MediaType.APPLICATION_JSON_TYPE)
-			.put(Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE));
+			.post(Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE));
 		assertOkStatus(response);
 		
-		final Evento evento = response.readEntity(Evento.class);
-		assertEquals(1, evento.getIdEvento());
-		assertEquals("Evento modificado", evento.getTitulo());
-		assertEquals(1, evento.getUsuario());
-		assertEquals("02/05/2015", evento.getinicio());
-		assertEquals("10/05/2015", evento.getfin());
-		assertEquals("Madrid", evento.getLocalidad());
-		assertEquals("descripcion corta modificada4", evento.getDescripcion());
-		assertEquals("descripcion larga modificada", evento.getDescripcionDetallada());
-		assertEquals("Series", evento.getCategoria());
-		assertEquals("Local 5", evento.getLocal());
-	}
-
-	@Test
-	public void testModifyInvalidId() throws IOException {
-		final Form form = new Form();
-		form.param("titulo", "Evento modificado");
-		form.param("usuario", "UsuarioPrueba1");
-		form.param("inicio", "02/05/2015");
-		form.param("fin", "10/05/2015");
-		form.param("localidad", "Madrid");
-		form.param("descripcion", "descripcion corta modificada");
-		form.param("descripcionDetallada", "descripcion larga modificada");
-		form.param("categoria", "Series");
-		form.param("local", "Local 5");
+		final Response response2 = target("eventos/@localidad=Madrid").request().get();
+		assertOkStatus(response2);
 		
-		final Response response = target("eventos/100")
-			.request(MediaType.APPLICATION_JSON_TYPE)
-			.put(Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE));
-
-		assertBadRequestStatus(response);
-	}
-
-	@Test
-	public void testDelete() throws IOException {
-		final Response response = target("eventos/2").request().delete();
-		assertOkStatus(response);
+		final List<Evento> evento = response2.readEntity(new GenericType<List<Evento>>(){});
+		assertEquals(2, evento.size());
 		
-		assertEquals(2, (int) response.readEntity(Integer.class));
-	}
-
-	@Test
-	public void testDeleteInvalidId() throws IOException {
-		assertBadRequestStatus(target("eventos/100").request().delete());
+		assertEquals("Evento de prueba", evento.get(0).getTitulo());
+		assertEquals("Evento numero 3", evento.get(1).getTitulo());
 	}
 	
+	@Test
+	public void testFiltrarCategoria() throws IOException{
+		final Form form = new Form();
+		form.param("titulo", "Evento de prueba");
+		form.param("usuario", "2");
+		form.param("inicio", "02/05/2015");
+		form.param("fin", "10/05/2015");
+		form.param("maxAsistentes", "11");
+		form.param("localidad", "Pontevedra");
+		form.param("descripcion", "descripcion corta4");
+		form.param("descripcionDetallada", "descripcion larga4");
+		form.param("categoria", "Peliculas");
+		form.param("local", "Local 4");
+		
+		final Response response = target("eventos")
+			.request(MediaType.APPLICATION_JSON_TYPE)
+			.post(Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE));
+		assertOkStatus(response);
+		
+		final Response response2 = target("eventos/@categoria=Peliculas").request().get();
+		assertOkStatus(response2);
+		
+		final List<Evento> evento = response2.readEntity(new GenericType<List<Evento>>(){});
+		assertEquals(2, evento.size());
+		
+		assertEquals("Evento de prueba", evento.get(0).getTitulo());
+		assertEquals("Evento numero 2", evento.get(1).getTitulo());
+	}
 	
 	@Test
 	public void testBuscar() throws IOException{
@@ -242,14 +233,15 @@ public class EventosTest extends JerseyTest {
 			.post(Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE));
 		assertOkStatus(response);
 		
-		final Response response2 = target("eventos/Evento").request().get();
+		final Response response2 = target("eventos/@cadenaBusqueda=Evento").request().get();
 		assertOkStatus(response2);
 		
 		final List<Evento> evento = response2.readEntity(new GenericType<List<Evento>>(){});
 		assertEquals(3, evento.size());
 		
 		assertEquals("Evento de prueba", evento.get(0).getTitulo());
-		assertEquals("Evento numero 1", evento.get(1).getTitulo());
-		assertEquals("Evento numero 2", evento.get(2).getTitulo());
+		assertEquals("Evento numero 3", evento.get(1).getTitulo());
+		assertEquals("Evento numero 1", evento.get(2).getTitulo());
+		assertEquals("Evento numero 2", evento.get(3).getTitulo());
 	}
 }

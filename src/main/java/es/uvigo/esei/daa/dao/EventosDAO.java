@@ -127,23 +127,6 @@ public class EventosDAO extends DAO {
 		}
 	}
 
-	public void delete(int id) throws DAOException, IllegalArgumentException {
-		try (final Connection conn = this.getConnection()) {
-			final String query = "DELETE FROM Eventos WHERE idEvento=?";
-
-			try (PreparedStatement statement = conn.prepareStatement(query)) {
-				statement.setInt(1, id);
-
-				if (statement.executeUpdate() != 1) {
-					throw new IllegalArgumentException("Invalid id");
-				}
-			}
-		} catch (SQLException e) {
-			LOG.log(Level.SEVERE, "Error borrando el evento", e);
-			throw new DAOException(e);
-		}
-	}
-
 	public List<Evento> filtrarLocalidad(String localidad) throws DAOException {
 		try (final Connection conn = this.getConnection()) {
 			final String query = "SELECT * FROM Eventos WHERE localidad=? ORDER BY maxAsistentes DESC";
@@ -171,7 +154,7 @@ public class EventosDAO extends DAO {
 				}
 			}
 		} catch (SQLException e) {
-			LOG.log(Level.SEVERE, "Error ordenando eventos", e);
+			LOG.log(Level.SEVERE, "Error filtrando eventos por localidad", e);
 			throw new DAOException(e);
 		}
 	}
@@ -203,7 +186,7 @@ public class EventosDAO extends DAO {
 				}
 			}
 		} catch (SQLException e) {
-			LOG.log(Level.SEVERE, "Error ordenando eventos", e);
+			LOG.log(Level.SEVERE, "Error filtrando eventos por categoria", e);
 			throw new DAOException(e);
 		}
 	}
@@ -235,7 +218,7 @@ public class EventosDAO extends DAO {
 				}
 			}
 		} catch (SQLException e) {
-			LOG.log(Level.SEVERE, "Error ordenando eventos", e);
+			LOG.log(Level.SEVERE, "Error buscando eventos", e);
 			throw new DAOException(e);
 		}
 	}
