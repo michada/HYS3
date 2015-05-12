@@ -42,7 +42,6 @@ public class EventosResource {
 			return Response.serverError().entity(e.getMessage()).build();
 		}
 	}
-	
 	public Response buscar(String cadena) {
 		try {
 			return Response.ok(this.dao.buscar(cadena), MediaType.APPLICATION_JSON).build();

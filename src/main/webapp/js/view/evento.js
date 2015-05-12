@@ -1,15 +1,29 @@
 function anadirEvento(evento,parent) {
 	parent.append(
 			'<div class="evento">\
-	        	<ul>\
-	                <li class="imagenEvento"><div><a href="#"><img src="media/img/poe.jpg" /></a></div></li>\
-	                <li class="descEvento"><div>\
-	                    <div class="tituloEvento"><p>'+ evento.titulo +'</p></div>\
-	                    <div class="propEvento"><p>Estas son las propiedades del evento</p></div>\
-	                </div>\
-	                <li>\
-	            </ul>\
-	        </div>'
+           	<table id="tablaEvento" class="table">\
+           		<tbody>\
+           			<tr>\
+           				<td>Titulo evento</td>\
+           				<td>Categoria</td>\
+           				<td rowspan="2"><a href="#"><img src="media/img/poe.jpg" height="100"/></a></td>\
+           			</tr>\
+           			<tr>\
+           				<td rowspan="2">Descripcion del evento</td>\
+           				<td>Asistentes</td>\
+           			</tr>\
+           			<tr>\
+           				<td>Fecha Inicio</td>\
+           				<td>Fecha Fin</td>\
+           			</tr>\
+           			<tr>\
+           				<td>Usuario</td>\
+           				<td>Local</td>\
+           				<td>Localidad</td>\
+           			</tr>\
+           		</tbody>\
+           	</table>\
+       	</div>'
 		);
 };
 	

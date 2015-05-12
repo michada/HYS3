@@ -1,10 +1,10 @@
 /*Estilos generales para la pagina*/
-	input{
-		margin: 5px 45%;
-	}
 	body{
 		font-family: Verdana,Geneva, sans-serif;
         margin:0px;
+	}
+	.hidden{
+		display:none;
 	}
 	/* Estilos para alinear listas*/
 	li.right{
@@ -52,7 +52,7 @@
 		}
 		div#cabecera li.buscar{
 			border-left: 1px solid #828587;
-			display: none;	
+			width: 30%;
 		}
 		a.user{
             color:#0f2105;
@@ -87,7 +87,7 @@
             padding-right: 10%;
             padding-bottom: 60px;
             background: white;
-            width: 70%;
+            width:90%;
         }
 		div#categorias, div#importantes, div#patrocinados{
             background: white;
@@ -117,11 +117,11 @@
                 float:left;
             }
             .imagenEvento{
-                width: 33%;
+                width: 200px;
                 height: 200px;
             }
             .descEvento{
-                width: auto;
+                width: 100%;
                 height: 200px;
             }
             .tituloEvento, .propEvento{
@@ -130,6 +130,10 @@
             }
             .tituloEvento p, .propEvento p{
                 margin: 0px 5%;
+            }
+            table#tablaEvento {
+            	height:100%;
+            	width: 100%;
             }
 		
 		div#patrocinados{

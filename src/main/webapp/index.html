@@ -1,15 +1,37 @@
-<!DOCTYPE html>
+<!DOCTYPE html>"/home/balverk/Documentos/PycharmProjects/dietamatic/templates/user.html"
 <html>
 <head>
 	<title>Have you seen?</title>
-	<link rel="stylesheet" type="text/css" href="css/styles.css" />
+	 <!-- Latest compiled and minified CSS -->
+     <link rel="stylesheet" href="lib/bootstrap-3.3.4/css/bootstrap.min.css">
+     <!-- My own CSS styles -->
+     <link type="text/css" rel="stylesheet" href="css/styles.css" />
+     <!-- jQuery library -->"/home/balverk/Documentos/PycharmProjects/dietamatic/templates/index.html"
+     <script src="lib/jquery-1.11.3.min.js">></script>
+     <!-- Latest compiled JavaScript -->
+     <script src="lib/bootstrap-3.3.4/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<div id="cabecera">
 		<ul >
 			<li class="left"><a href="index.html" class="title">HAVE YOU <span>SEEN?</span></a></li>
 			<li class="left"><a href="#" class="other">&iexclSi te gusta algo, habla de ello!</a></li>
-			<li class="left buscar"><form><span class="other">Buscar</span><input type="text"></input></form></li>
+			<li class="left buscar">
+				<form class="form-inline">
+					<span class="left other">Buscar</span><input class="form-control" class="left" type="text"></input>
+					<select class="form-control">
+						<option value="pontevedra">Pontevedra</option>
+						<option value="Madrid">Madrid</option>
+						<option value="vigo">Vigo</option>
+						<option value="barcelona">Barcelona</option>
+					</select>
+					<select class="form-control">
+						<option value="libros">Libros</option>
+						<option value="peliculas">Peliculas</option>
+						<option value="series">Series</option>
+					</select>
+				</form>
+			</li>
 			<li class="right"><a href="#" class="user">ansousa</a></li>
 			<li class="right"><a href="#" class="log">Con&eacutectate</a></li>
 			<li class="right"><a href="#" class="log">Registrate</a></li>
@@ -30,6 +52,31 @@
 							listarEventos($('#importantes'));
 						});
 					</script>
+						<div class="evento">
+		                   	<table id="tablaEvento" class="table">
+		                   		<tbody>
+		                   			<tr>
+		                   				<td>Titulo evento</td>
+		                   				<td>Categoria</td>
+		                   				<td rowspan="2"><a href="#"><img src="media/img/poe.jpg" height="100"/></a></td>
+		                   			</tr>
+		                   			<tr>
+		                   				<td rowspan="2">Descripcion del evento</td>
+		                   				<td>Asistentes</td>
+		                   			</tr>
+		                   			<tr>
+		                   				<td>Fecha Inicio</td>
+		                   				<td>Fecha Fin</td>
+		                   			</tr>
+		                   			<tr>
+		                   				<td>Usuario</td>
+		                   				<td>Local</td>
+		                   				<td>Localidad</td>
+		                   			</tr>
+		                   		</tbody>
+		                   	</table>
+	                   	</div>
+	        		</div>
                 </div>
             </div>
         </div>
