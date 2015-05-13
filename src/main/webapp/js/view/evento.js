@@ -4,22 +4,22 @@ function anadirEvento(evento,parent) {
            	<table id="tablaEvento" class="table">\
            		<tbody>\
            			<tr>\
-           				<td>Titulo evento</td>\
-           				<td>Categoria</td>\
+           				<td>' + evento.titulo + '</td>\
+           				<td>Categoria: ' + evento.categoria + '</td>\
            				<td rowspan="2"><a href="#"><img src="media/img/poe.jpg" height="100"/></a></td>\
            			</tr>\
            			<tr>\
-           				<td rowspan="2">Descripcion del evento</td>\
-           				<td>Asistentes</td>\
+           				<td rowspan="2">' + evento.descripcion + '</td>\
+           				<td>Asistentes: ' + evento.maxAsistentes + '</td>\
            			</tr>\
            			<tr>\
-           				<td>Fecha Inicio</td>\
-           				<td>Fecha Fin</td>\
+           				<td>Fecha inicio: ' + evento.inicio + '</td>\
+           				<td>Fecha fin: ' + evento.fin + '</td>\
            			</tr>\
            			<tr>\
-           				<td>Usuario</td>\
-           				<td>Local</td>\
-           				<td>Localidad</td>\
+           				<td>Creador: ' + evento.usuario + '</td>\
+           				<td>Lugar: ' + evento.local + '</td>\
+           				<td>' + evento.localidad + '</td>\
            			</tr>\
            		</tbody>\
            	</table>\

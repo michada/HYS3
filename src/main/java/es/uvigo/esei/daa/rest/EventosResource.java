@@ -58,11 +58,15 @@ public class EventosResource {
 			@QueryParam("categoria") String categoria
 			){
 		try {
-			if (cadenaBusqueda == null && categoria == null){
+			if ( cadenaBusqueda == null && categoria == null && localidad == null  ) {
+				return filtrarLocalidad("Pontevedra");
+			}
+			else if (cadenaBusqueda == null && categoria == null){
 				return filtrarLocalidad(localidad);
 			}else if(cadenaBusqueda == null && localidad == null){
 				return filtrarCategoria(categoria);
 			}else{
+				System.out.print(cadenaBusqueda);
 				return Response.ok(this.dao.buscar(cadenaBusqueda), MediaType.APPLICATION_JSON).build();
 			}
 		} catch (DAOException e) {
