@@ -1,4 +1,25 @@
+function buscarLocalidad(localidad) {
+	$.getScript('js/dao/evento.js', function() {
+		listLocalidad(localidad,function(eventos) {
+			$.each(eventos, function(key, evento) {
+				anadirEvento(evento,$('#categorias'));
+			});
+		});
+	});
+};
+
+function buscarCategoria(categoria) {
+	$.getScript('js/dao/evento.js', function() {
+		listCategoria(localidad,function(eventos) {
+			$.each(eventos, function(key, evento) {
+				anadirEvento(evento,$('#categorias'));
+			});
+		});
+	});
+};
+
 function anadirEvento(evento,parent) {
+	alert(parent);
 	parent.append(
 			'<div class="evento">\
            	<table id="tablaEvento" class="table">\

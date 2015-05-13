@@ -10,6 +10,7 @@
      <script src="lib/jquery-1.11.3.min.js">></script>
      <!-- Latest compiled JavaScript -->
      <script src="lib/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+     <script type="text/javascript" src="js/view/evento.js"></script>
 </head>
 <body>
 	<div class="navbar navbar-default" id="cabecera">
@@ -19,16 +20,18 @@
 			<li class="left buscar">
 				<form class="form-inline">
 					<span class="left other">Buscar</span><input class="form-control" class="left" type="text"></input>
-					<select class="form-control">
-						<option value="pontevedra">Pontevedra</option>
+					<select class="form-control" id="localidad" onchange="buscarLocalidad(this.value)">
+						<option selected value="-">-</option>
+						<option value="Pontevedra">Pontevedra</option>
 						<option value="Madrid">Madrid</option>
-						<option value="vigo">Vigo</option>
-						<option value="barcelona">Barcelona</option>
+						<option value="Vigo">Vigo</option>
+						<option value="Barcelona">Barcelona</option>
 					</select>
-					<select class="form-control">
-						<option value="libros">Libros</option>
-						<option value="peliculas">Peliculas</option>
-						<option value="series">Series</option>
+					<select class="form-control" class="form-control" onchange="buscarCategoria(this.value)">
+						<option selected value="-">-</option>
+						<option value="Libros">Libros</option>
+						<option value="Peliculas">Peliculas</option>
+						<option value="Series">Series</option>
 					</select>
 				</form>
 			</li>
@@ -41,7 +44,8 @@
         <div id="fondoCuerpo">
             <div id="cuerpoContenido">
                 <div id="categorias">
-                    Categorias
+                    <h1>Categorias</h1>
+ 					
                 </div>
                 <div id="importantes" class="left">
                 	<h1>Eventos Importantes</h1>
