@@ -1,4 +1,26 @@
+function buscarCadena(cadena) {
+	if (localidad == '') {
+		$('#categorias').html('');
+	}
+	else {
+		$('#categorias').html('<h1>Eventos que contiene: ' + cadena + '</h1>');
+	}
+	$.getScript('js/dao/evento.js', function() {
+		listCadena(cadena,function(eventos) {
+			$.each(eventos, function(key, evento) {
+				anadirEvento(evento,$('#categorias'));
+			});
+		});
+	});
+};
+
 function buscarLocalidad(localidad) {
+	if (localidad == '-') {
+		$('#categorias').html('');
+	}
+	else {
+		$('#categorias').html('<h1>Eventos en: ' + localidad + '</h1>');
+	}
 	$.getScript('js/dao/evento.js', function() {
 		listLocalidad(localidad,function(eventos) {
 			$.each(eventos, function(key, evento) {
@@ -9,8 +31,14 @@ function buscarLocalidad(localidad) {
 };
 
 function buscarCategoria(categoria) {
+	if (categoria == '-') {
+		$('#categorias').html('');
+	}
+	else {
+		$('#categorias').html('<h1>Eventos sobre: ' + categoria + '</h1>');
+	}
 	$.getScript('js/dao/evento.js', function() {
-		listCategoria(localidad,function(eventos) {
+		listCategoria(categoria,function(eventos) {
 			$.each(eventos, function(key, evento) {
 				anadirEvento(evento,$('#categorias'));
 			});
@@ -19,7 +47,6 @@ function buscarCategoria(categoria) {
 };
 
 function anadirEvento(evento,parent) {
-	alert(parent);
 	parent.append(
 			'<div class="evento">\
            	<table id="tablaEvento" class="table">\

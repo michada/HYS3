@@ -11,6 +11,20 @@ function listEventos(done, fail, always) {
 	.always(always);
 };
 
+function listCadena(cadena, done, fail, always) {
+	done = typeof done !== 'undefined' ? done : function() {};
+	fail = typeof fail !== 'undefined' ? fail : function() {};
+	always = typeof always !== 'undefined' ? always : function() {};
+	$.ajax({
+		url: 'rest/eventos',
+		type: 'GET',
+		data: 'cadenaBusqueda' + cadena
+	})
+	.done(done)
+	.fail(fail)
+	.always(always);
+};
+
 function listLocalidad(localidad,done, fail, always) {
 	done = typeof done !== 'undefined' ? done : function() {};
 	fail = typeof fail !== 'undefined' ? fail : function() {};
@@ -25,7 +39,7 @@ function listLocalidad(localidad,done, fail, always) {
 	.always(always);
 };
 
-function listLocalidad(localidad,done, fail, always) {
+function listCategoria(categoria,done, fail, always) {
 	done = typeof done !== 'undefined' ? done : function() {};
 	fail = typeof fail !== 'undefined' ? fail : function() {};
 	always = typeof always !== 'undefined' ? always : function() {};
