@@ -14,9 +14,6 @@
 		float:left;
 	}
 	/*Las capas por defecto se alinearan a la izquierda*/
-	div{
-		float:left;
-	}	
 	.other{
 		color:#828587;
 		font-size: 16px;
@@ -93,12 +90,13 @@
             background: white;
 		}
 		
-		div#categorias{
-		
+		div#categorias, a{
+			text-decoration: none;
 		}
 		
         div#importantes{
             width: 100%;
+            text-decoration: none;
         }
         /*Estilos para eventos*/
             .evento{
@@ -149,7 +147,7 @@
             position: fixed;*/
         }
         div#pie a{
-            color: #d9d9de;
+            color: #000;
             text-decoration: none;
         }
         div#pie li{

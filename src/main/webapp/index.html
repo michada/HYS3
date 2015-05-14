@@ -13,7 +13,7 @@
      <script type="text/javascript" src="js/view/evento.js"></script>
 </head>
 <body>
-	<div class="navbar navbar-default" id="cabecera">
+	<div class="left" id="cabecera">
 		<ul >
 			<li class="left"><a href="index.html" class="title">HAVE YOU <span>SEEN?</span></a></li>
 			<li class="left"><a href="#" class="other">&iexclSi te gusta algo, habla de ello!</a></li>
@@ -40,9 +40,28 @@
 			<li class="right"><a href="#" class="log">Registrate</a></li>
 		</ul>
 	</div>
-	<div id="cuerpo">
-        <div id="fondoCuerpo">
-            <div id="cuerpoContenido">
+	<div id="cuerpo" class="left">
+        <div id="fondoCuerpo" class="left">
+            <div id="cuerpoContenido" class="left">
+            <div id="consultarEvento" class="modal fade" role="dialog">
+				  <div class="modal-dialog modal-lg">
+				
+				    <!-- Modal content-->
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal">&times;</button>
+				        <h4 class="modal-title">Modal Header</h4>
+				      </div>
+				      <div class="modal-body">
+				        <p>Some text in the modal.</p>
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				      </div>
+				    </div>
+				
+				  </div>
+			</div>
                 <div id="categorias" class="left">
           			
                 </div>
@@ -59,7 +78,7 @@
                 </div>
             </div>
        </div>
-	<div id="pie">
+	<div id="pie" class="left">
 		<ul>
 			<li class="left"><a href="#">&iquestQui&eacutenes somos?</a></li>		
 		</ul>

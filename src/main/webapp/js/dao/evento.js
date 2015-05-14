@@ -18,7 +18,7 @@ function listCadena(cadena, done, fail, always) {
 	$.ajax({
 		url: 'rest/eventos',
 		type: 'GET',
-		data: 'cadenaBusqueda' + cadena
+		data: 'cadenaBusqueda=' + cadena
 	})
 	.done(done)
 	.fail(fail)

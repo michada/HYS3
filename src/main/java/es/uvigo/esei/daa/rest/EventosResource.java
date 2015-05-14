@@ -59,7 +59,7 @@ public class EventosResource {
 			@QueryParam("categoria") String categoria
 			){
 		try {
-			System.out.println("Cadena:" + cadenaBusqueda + ", Localidad: " + localidad + ",Categoria: " + categoria);
+			//System.out.println("Cadena:" + cadenaBusqueda + ", Localidad: " + localidad + ",Categoria: " + categoria);
 			if ( cadenaBusqueda == null && categoria == null && localidad == null  ) {
 				return filtrarLocalidad("Pontevedra");
 			}
@@ -70,7 +70,10 @@ public class EventosResource {
 				return filtrarLocalidad(localidad);
 			}else if(cadenaBusqueda == null && localidad == null){
 				return filtrarCategoria(categoria);
-			}else{
+			}else if(categoria == null && localidad == null) {
+				return buscar(cadenaBusqueda);
+			}
+			else{
 				return Response.ok(this.dao.buscar(cadenaBusqueda), MediaType.APPLICATION_JSON).build();
 			}
 		} catch (DAOException e) {
@@ -78,7 +81,7 @@ public class EventosResource {
 			return Response.serverError().entity(e.getMessage()).build();
 		}
 	}
-	/*
+	
 	@GET
 	@Path("/{idEvento}")
 	public Response get(
@@ -94,5 +97,5 @@ public class EventosResource {
 			LOG.log(Level.SEVERE, "Error cogiendo un evento", e);
 			return Response.serverError().entity(e.getMessage()).build();
 		}
-	}*/
+	}
 }

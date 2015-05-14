@@ -193,10 +193,10 @@ public class EventosDAO extends DAO {
 
 	public List<Evento> buscar(String cadena) throws DAOException {
 		try (final Connection conn = this.getConnection()) {
-			final String query = "SELECT * FROM Eventos WHERE titulo=? ORDER BY maxAsistentes DESC";
+			final String query = "SELECT * FROM Eventos WHERE titulo LIKE ? ORDER BY maxAsistentes DESC";
 			
 			try (PreparedStatement statement = conn.prepareStatement(query)) {
-				statement.setString(1, cadena);
+				statement.setString(1, "%"+cadena+"%");
 				
 					final List<Evento> eventos = new LinkedList<>();
 					try (ResultSet result = statement.executeQuery()) {
