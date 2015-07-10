@@ -91,7 +91,7 @@ function anadirEvento(evento,parent) {
            				<td rowspan="2">' + evento.descripcion + '</td>\
            			</tr>\
            			<tr>\
-           			</tr>\
+           			</tr> <button type="button" class="btn btn-success" data-dismiss="modal">Apuntate!</button>\
            			<tr>\
            				<td>' + evento.localidad + '</td>\
            			</tr>\
