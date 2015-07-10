@@ -89,15 +89,10 @@ function anadirEvento(evento,parent) {
            			</tr>\
            			<tr>\
            				<td rowspan="2">' + evento.descripcion + '</td>\
-           				<td>Asistentes: ' + evento.maxAsistentes + '</td>\
            			</tr>\
            			<tr>\
-           				<td>Fecha inicio: ' + evento.inicio + '</td>\
-           				<td>Fecha fin: ' + evento.fin + '</td>\
            			</tr>\
            			<tr>\
-           				<td>Creador: ' + evento.usuario + '</td>\
-           				<td>Lugar: ' + evento.local + '</td>\
            				<td>' + evento.localidad + '</td>\
            			</tr>\
            		</tbody>\

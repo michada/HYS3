@@ -101,8 +101,8 @@
         /*Estilos para eventos*/
             .evento{
                 box-shadow: 1px 1px 10px #828587;
-                width: 100%;
-                max-width: 70%;
+                width: 30%;   /*50*/
+                max-width: 100%;   /*70*/
                 margin: 5px 15%;
                 border-radius: 3px;
             }
@@ -131,7 +131,8 @@
             }
             table#tablaEvento {
             	height:100%;
-            	width: 100%;
+            	width: 50%;
+   
             }
 		
 		div#patrocinados{
