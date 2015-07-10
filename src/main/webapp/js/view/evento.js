@@ -79,6 +79,7 @@ function editarModal(id) {
 function anadirEvento(evento,parent) {
 	parent.append(
 			'<div class="evento">\
+			<button type="button" class="btn btn-success" data-dismiss="modal">Apuntate!</button>\
 			<a href="#" data-toggle="modal" data-target="#consultarEvento" onClick="editarModal('+ evento.idEvento +')">\
            	<table id="tablaEvento" class="table">\
            		<tbody>\
@@ -91,7 +92,7 @@ function anadirEvento(evento,parent) {
            				<td rowspan="2">' + evento.descripcion + '</td>\
            			</tr>\
            			<tr>\
-           			</tr> <button type="button" class="btn btn-success" data-dismiss="modal">Apuntate!</button>\
+           			</tr>\
            			<tr>\
            				<td>' + evento.localidad + '</td>\
            			</tr>\
