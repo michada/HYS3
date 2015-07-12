@@ -55,7 +55,13 @@
             color:#0f2105;
             font-size: 26px;
             text-decoration: none;
-		}
+            }
+       a.event-user {
+       		top:200px
+       		color:#0d1869;
+            font-size: 20px;
+            text-decoration: none;
+       }
 		div#cabecera ul, div#pie ul{
             list-style: none;
             margin: 0;
@@ -80,7 +86,7 @@
             margin-left: 5%;
             margin-right: 5%;
             padding-left: 10%;
-            padding-top: 60px;
+            padding-top: 80px;
             padding-right: 10%;
             padding-bottom: 60px;
             background: white;

@@ -19,7 +19,7 @@
 			<li class="left"><a href="#" class="other">&iexclSi te gusta algo, habla de ello!</a></li>
 			<li class="left buscar">
 				<form class="form-inline">
-					<span class="left other">Buscar</span><input class="form-control" class="left" type="text" onkeyup="buscarCadena(this.value)"></input>
+					<span class="left other">Buscar</span><input class="form-control" class="left" type="text" onkeyup="buscarCadena(this.value)" id="buscar"></input>
 					<select class="form-control" id="localidad" onchange="buscarLocalidad(this.value)">
 						<option selected="selected" value="-">Localidad</option>
 						<option value="Pontevedra">Pontevedra</option>
@@ -36,6 +36,9 @@
 				</form>
 			</li>
 			<li class="right"><a href="#" class="user">ansousa</a></li>
+			<li>
+			<li>
+			<li class="right"><a href="#" class="event-user"> Eventos a los que asistire! </a> </li>
 			<li class="right"><a href="#" class="log">Con&eacutectate</a></li>
 			<li class="right"><a href="#" class="log">Registrate</a></li>
 		</ul>
@@ -67,17 +70,15 @@
                 </div> 
                 
                 
-               <div id="importantes" class="left">
+               <div id="importantes" style="display: block" class="left">
                 	<h1>Eventos Importantes</h1>
 	            	<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.js"></script>
 					<script type="text/javascript" src="js/view/evento.js"></script>
 					<script type="text/javascript">
 						$(document).ready(function() {
-							listarEventos($('#importantes'));
-						});
-					
-						
-						
+							listarEventos($('#importantes'));	      
+								});
+								
 						
 					</script>
 	        	</div>
